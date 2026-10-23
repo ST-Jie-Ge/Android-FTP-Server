@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_page_background"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <LinearLayout style="@style/CardGroup">
+
+            <RelativeLayout android:id="@+id/anonymous_account_path" style="@style/SettingsRowTop">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/account_path" /><com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/anonymous_account_path_value" style="@style/SettingsSubtitle" /></LinearLayout><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/anonymous_account_enabled" style="@style/SettingsRowMiddle">
+                <LinearLayout style="@style/SettingsTextGroup" android:layout_width="match_parent" android:layout_height="match_parent"><TextView style="@style/SettingsTitle" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center_vertical" android:text="@string/anonymous_enabled" /></LinearLayout><CheckBox android:id="@+id/anonymous_account_enabled_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/anonymous_account_writable" style="@style/SettingsRowBottom">
+                <LinearLayout style="@style/SettingsTextGroup" android:layout_width="match_parent" android:layout_height="match_parent"><TextView style="@style/SettingsTitle" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center_vertical" android:text="@string/anonymous_writable" /></LinearLayout><CheckBox android:id="@+id/anonymous_account_writable_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_banner_warning"
+            android:paddingLeft="20dp"
+            android:paddingTop="13dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="13dp"
+            android:text="@string/anonymous_performance_notice"
+            android:textColor="@color/color_banner_warning_text"
+            android:textSize="14sp" />
+    </LinearLayout>
+    </ScrollView>
+
+    <!-- 与具名账户页保持一致：保存搬到底部，顶栏只留返回。 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_card_background"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingTop="10dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/anonymous_account_action_save"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_folder_btn_solid"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_account_save"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

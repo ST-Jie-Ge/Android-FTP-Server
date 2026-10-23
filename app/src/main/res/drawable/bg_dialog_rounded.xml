@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 对话框窗口背景：24dp 圆角白底。
+     2026-09-30 新增。圆角尺寸取 24dp 是为了和改造前 ui/ModernDialogStyle
+     手写设置的圆角完全一致 —— 老用户看到的对话框形状不变，只是从「只有部分对话框有圆角」
+     变成「所有对话框都有圆角」（由 styles.xml 里的 AppAlertDialog 统一生效）。 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@android:color/white" />
+    <corners android:radius="24dp" />
+</shape>

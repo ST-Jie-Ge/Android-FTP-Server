@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 数据出境同意弹窗的内容区（方案 B′）。
+
+     全部内容**左对齐**，标题 / 导语 / 分区卡共用同一条左基准线（20dp padding）。
+     顶部标题固定不滚动，下面的导语 + 分段说明 + 提示语放在可滚动区，
+     高度由 MainActivity.constrainConsentDialogBody() 封顶到屏幕的 50%。
+
+     原有的 40dp 装饰图标已按用户要求移除（占行高、挤出正文空间，信息量为零），
+     标题直接贴顶，同样的弹窗高度能多显示约一行正文。
+
+     分段卡片不在这里写死，由 MainActivity 按 ANALYTICS_PROMPT_SECTIONS 逐对生成
+     —— 加一段说明仍然只需要在那个数组里加一对，不动布局。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/analytics_prompt_title"
+        android:textColor="#1F2933"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/consent_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="2dp"
+                android:text="@string/analytics_prompt_message_lead"
+                android:textColor="#6B7785"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/consent_sections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="2dp"
+                android:text="@string/analytics_prompt_more_hint"
+                android:textColor="#6B7785"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

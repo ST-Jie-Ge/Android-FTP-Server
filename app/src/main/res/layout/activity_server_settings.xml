@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 服务端设置二级页：原 FTP 主界面「账户设置」下方的 7 行服务端参数整体搬到这里。 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/server_settings_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_page_background"
+    tools:context=".activities.ServerSettingsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <LinearLayout style="@style/CardGroup">
+            <RelativeLayout
+                android:id="@+id/port_area"
+                style="@style/SettingsRowTop">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:text="@string/item_port"
+                    android:textColor="@color/color_text_dark"
+                    android:textSize="15sp" />
+
+                <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                    android:id="@+id/port_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/port_arrow"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="5555" />
+
+                <ImageView
+                    android:id="@+id/port_arrow"
+                    style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/anonymous_connect_num_area"
+                style="@style/SettingsRowMiddle"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:text="@string/item_anonymous_num"
+                    android:textColor="@color/color_text_dark"
+                    android:textSize="15sp" />
+
+                <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                    android:id="@+id/anonymous_connect_num_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/anonymous_arrow"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="10" />
+
+                <ImageView
+                    android:id="@+id/anonymous_arrow"
+                    style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/login_connect_num_area"
+                style="@style/SettingsRowMiddle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:text="@string/item_login_num"
+                    android:textColor="@color/color_text_dark"
+                    android:textSize="15sp" />
+
+                <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                    android:id="@+id/login_connect_num_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/login_arrow"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="20" />
+
+                <ImageView
+                    android:id="@+id/login_arrow"
+                    style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout android:id="@+id/performance_reclaim_area" style="@style/SettingsRowMiddle">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp" android:layout_toLeftOf="@+id/performance_reclaim_value"
+                    android:layout_marginRight="12dp" android:text="@string/item_performance_reclaim"
+                    android:textColor="@color/color_text_dark" android:textSize="15sp" />
+                <com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/performance_reclaim_value"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_centerVertical="true" android:layout_toLeftOf="@+id/performance_reclaim_arrow"
+                    android:layout_marginRight="8dp" android:textColor="@color/color_text_secondary" android:textSize="14sp" />
+                <ImageView android:id="@+id/performance_reclaim_arrow" style="@style/SettingsArrow" />
+                <View style="@style/SettingsDivider" android:layout_alignParentBottom="true" android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/worker_threads_area"
+                style="@style/SettingsRowMiddle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:text="@string/item_worker_threads"
+                    android:textColor="@color/color_text_dark"
+                    android:textSize="15sp" />
+
+                <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                    android:id="@+id/worker_threads_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/worker_arrow"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="14" />
+
+                <ImageView
+                    android:id="@+id/worker_arrow"
+                    style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/transfer_slots_area"
+                style="@style/SettingsRowMiddle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:text="@string/item_transfer_slots"
+                    android:textColor="@color/color_text_dark"
+                    android:textSize="15sp" />
+
+                <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                    android:id="@+id/transfer_slots_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/transfer_slots_arrow"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="6" />
+
+                <ImageView
+                    android:id="@+id/transfer_slots_arrow"
+                    style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/transfer_buffer_area"
+                style="@style/SettingsRowMiddle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:text="@string/item_transfer_buffer"
+                    android:textColor="@color/color_text_dark"
+                    android:textSize="15sp" />
+
+                <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                    android:id="@+id/transfer_buffer_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/transfer_buffer_arrow"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="64 KB" />
+
+                <ImageView
+                    android:id="@+id/transfer_buffer_arrow"
+                    style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <!-- 编码方式：原「实验功能」里的条目，收进服务端设置页最底部。
+                 它是控制连接字符集的服务端参数，和端口 / 线程数同属一类。 -->
+            <RelativeLayout
+                android:id="@+id/charset_area"
+                style="@style/SettingsRowBottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:text="@string/item_charset"
+                    android:textColor="@color/color_text_dark"
+                    android:textSize="15sp" />
+
+                <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                    android:id="@+id/charset_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/charset_arrow"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="14sp"
+                    tools:text="UTF-8(默认)" />
+
+                <ImageView
+                    android:id="@+id/charset_arrow"
+                    style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:orientation="vertical" />
+    </LinearLayout>
+</ScrollView>

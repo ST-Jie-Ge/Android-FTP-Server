@@ -1,0 +1,1242 @@
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.NativeMoveTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+com.github.stjiege.ftpshare.filesystem.NativeMoveTest:
+INSTRUMENTATION_STATUS: test=existingFileAndDirectoryAreNeverOverwritten
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.NativeMoveTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.existingFileAndDirectoryAreNeverOverwritten(NativeMoveTest.java:38)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 29 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in existingFileAndDirectoryAreNeverOverwritten(com.github.stjiege.ftpshare.filesystem.NativeMoveTest):
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.existingFileAndDirectoryAreNeverOverwritten(NativeMoveTest.java:38)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 29 more
+
+INSTRUMENTATION_STATUS: test=existingFileAndDirectoryAreNeverOverwritten
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.NativeMoveTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=simultaneousCommitHasExactlyOneWinner
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.NativeMoveTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.util.concurrent.ExecutionException: java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.simultaneousCommitHasExactlyOneWinner(NativeMoveTest.java:54)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.lambda$simultaneousCommitHasExactlyOneWinner$0(NativeMoveTest.java:51)
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest$$ExternalSyntheticLambda0.call(Unknown Source:6)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+	at java.lang.Thread.run(Thread.java:1012)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 6 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in simultaneousCommitHasExactlyOneWinner(com.github.stjiege.ftpshare.filesystem.NativeMoveTest):
+java.util.concurrent.ExecutionException: java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.simultaneousCommitHasExactlyOneWinner(NativeMoveTest.java:54)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.lambda$simultaneousCommitHasExactlyOneWinner$0(NativeMoveTest.java:51)
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest$$ExternalSyntheticLambda0.call(Unknown Source:6)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+	at java.lang.Thread.run(Thread.java:1012)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 6 more
+
+INSTRUMENTATION_STATUS: test=simultaneousCommitHasExactlyOneWinner
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.NativeMoveTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=supplementaryUnicodeAndDirectoryRenameWork
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.NativeMoveTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.supplementaryUnicodeAndDirectoryRenameWork(NativeMoveTest.java:63)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 29 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in supplementaryUnicodeAndDirectoryRenameWork(com.github.stjiege.ftpshare.filesystem.NativeMoveTest):
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.supplementaryUnicodeAndDirectoryRenameWork(NativeMoveTest.java:63)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 29 more
+
+INSTRUMENTATION_STATUS: test=supplementaryUnicodeAndDirectoryRenameWork
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest:
+INSTRUMENTATION_STATUS: test=crossVolumeMoveAndConflict
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.crossVolumeMoveAndConflict(FtpWorkflowVerificationTest.java:249)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in crossVolumeMoveAndConflict(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest):
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.crossVolumeMoveAndConflict(FtpWorkflowVerificationTest.java:249)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+INSTRUMENTATION_STATUS: test=crossVolumeMoveAndConflict
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=anonymousReadonlyAndMalformedLoginResponses
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.anonymousReadonlyAndMalformedLoginResponses(FtpWorkflowVerificationTest.java:213)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in anonymousReadonlyAndMalformedLoginResponses(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest):
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.anonymousReadonlyAndMalformedLoginResponses(FtpWorkflowVerificationTest.java:213)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+INSTRUMENTATION_STATUS: test=anonymousReadonlyAndMalformedLoginResponses
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=aborCancelsRunningCrossVolumeCopy
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelCopy(FtpWorkflowVerificationTest.java:266)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.aborCancelsRunningCrossVolumeCopy(FtpWorkflowVerificationTest.java:263)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 35 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in aborCancelsRunningCrossVolumeCopy(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest):
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelCopy(FtpWorkflowVerificationTest.java:266)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.aborCancelsRunningCrossVolumeCopy(FtpWorkflowVerificationTest.java:263)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 35 more
+
+INSTRUMENTATION_STATUS: test=aborCancelsRunningCrossVolumeCopy
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=disconnectCancelsRunningCrossVolumeCopy
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelCopy(FtpWorkflowVerificationTest.java:266)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.disconnectCancelsRunningCrossVolumeCopy(FtpWorkflowVerificationTest.java:264)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 35 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in disconnectCancelsRunningCrossVolumeCopy(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest):
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelCopy(FtpWorkflowVerificationTest.java:266)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.disconnectCancelsRunningCrossVolumeCopy(FtpWorkflowVerificationTest.java:264)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 35 more
+
+INSTRUMENTATION_STATUS: test=disconnectCancelsRunningCrossVolumeCopy
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=cancelUploadBeforeFirstBytePreservesExistingFile
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelUploadBeforeFirstBytePreservesExistingFile(FtpWorkflowVerificationTest.java:231)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in cancelUploadBeforeFirstBytePreservesExistingFile(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest):
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelUploadBeforeFirstBytePreservesExistingFile(FtpWorkflowVerificationTest.java:231)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+INSTRUMENTATION_STATUS: test=cancelUploadBeforeFirstBytePreservesExistingFile
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=anonymousAndNamedLoginListUploadAndMoveConflict
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.anonymousAndNamedLoginListUploadAndMoveConflict(FtpWorkflowVerificationTest.java:189)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in anonymousAndNamedLoginListUploadAndMoveConflict(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest):
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.anonymousAndNamedLoginListUploadAndMoveConflict(FtpWorkflowVerificationTest.java:189)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+INSTRUMENTATION_STATUS: test=anonymousAndNamedLoginListUploadAndMoveConflict
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 0.417
+There were 9 failures:
+1) existingFileAndDirectoryAreNeverOverwritten(com.github.stjiege.ftpshare.filesystem.NativeMoveTest)
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.existingFileAndDirectoryAreNeverOverwritten(NativeMoveTest.java:38)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 29 more
+2) simultaneousCommitHasExactlyOneWinner(com.github.stjiege.ftpshare.filesystem.NativeMoveTest)
+java.util.concurrent.ExecutionException: java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.simultaneousCommitHasExactlyOneWinner(NativeMoveTest.java:54)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.lambda$simultaneousCommitHasExactlyOneWinner$0(NativeMoveTest.java:51)
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest$$ExternalSyntheticLambda0.call(Unknown Source:6)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+	at java.lang.Thread.run(Thread.java:1012)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 6 more
+3) supplementaryUnicodeAndDirectoryRenameWork(com.github.stjiege.ftpshare.filesystem.NativeMoveTest)
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/NativeMove;
+	at com.github.stjiege.ftpshare.filesystem.NativeMoveTest.supplementaryUnicodeAndDirectoryRenameWork(NativeMoveTest.java:63)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.NativeMove" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 29 more
+4) crossVolumeMoveAndConflict(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest)
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.crossVolumeMoveAndConflict(FtpWorkflowVerificationTest.java:249)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+5) anonymousReadonlyAndMalformedLoginResponses(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest)
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.anonymousReadonlyAndMalformedLoginResponses(FtpWorkflowVerificationTest.java:213)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+6) aborCancelsRunningCrossVolumeCopy(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest)
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelCopy(FtpWorkflowVerificationTest.java:266)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.aborCancelsRunningCrossVolumeCopy(FtpWorkflowVerificationTest.java:263)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 35 more
+7) disconnectCancelsRunningCrossVolumeCopy(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest)
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelCopy(FtpWorkflowVerificationTest.java:266)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.disconnectCancelsRunningCrossVolumeCopy(FtpWorkflowVerificationTest.java:264)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 35 more
+8) cancelUploadBeforeFirstBytePreservesExistingFile(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest)
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.cancelUploadBeforeFirstBytePreservesExistingFile(FtpWorkflowVerificationTest.java:231)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+9) anonymousAndNamedLoginListUploadAndMoveConflict(com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest)
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/github/stjiege/ftpshare/filesystem/CopyExecutor;
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest$Fixture.<init>(FtpWorkflowVerificationTest.java:113)
+	at com.github.stjiege.ftpshare.filesystem.FtpWorkflowVerificationTest.anonymousAndNamedLoginListUploadAndMoveConflict(FtpWorkflowVerificationTest.java:189)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at androidx.test.internal.runner.junit4.statement.RunBefores.evaluate(RunBefores.java:80)
+	at androidx.test.internal.runner.junit4.statement.RunAfters.evaluate(RunAfters.java:61)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:104)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:56)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:388)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)
+Caused by: java.lang.ClassNotFoundException: Didn't find class "com.github.stjiege.ftpshare.filesystem.CopyExecutor" on path: DexPathList[[zip file "/system/framework/android.test.runner.jar", zip file "/system/framework/android.test.mock.jar", zip file "/system/framework/android.test.base.jar", zip file "/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/base.apk", zip file "/data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/base.apk"],nativeLibraryDirectories=[/data/app/~~YpTW2XPe9-pXSOjFSriKhA==/com.github.stjiege.ftpshare.test-FwLaOI8-SiDmUpoUXQrfXQ==/lib/x86_64, /data/app/~~OCuhAqIkducZoHZWIQDoPQ==/com.github.stjiege.ftpshare-l6bwDJO_KsavXaNInY__iw==/lib/x86_64, /system/lib64, /system_ext/lib64]]
+	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:379)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:312)
+	... 34 more
+
+FAILURES!!!
+Tests run: 9,  Failures: 9
+
+
+INSTRUMENTATION_CODE: -1

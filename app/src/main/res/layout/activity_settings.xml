@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_page_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <LinearLayout style="@style/CardGroup">
+            <TextView style="@style/SettingsCardHeading" android:text="@string/settings_section_permissions" />
+            <View style="@style/SettingsDivider" />
+
+            <RelativeLayout android:id="@+id/setting_storage_access" style="@style/SettingsRowMiddle">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_storage_access" />
+                <ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View android:id="@+id/setting_storage_divider" style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/setting_legacy_storage_access" style="@style/SettingsRowMiddle">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_legacy_storage_access" /><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View android:id="@+id/setting_legacy_storage_divider" style="@style/SettingsDivider" />
+            <!-- 无障碍保活：从「实验功能」移到这里，和存储 / 通知权限同属权限类入口 -->
+            <RelativeLayout android:id="@+id/setting_accessibility_control" style="@style/SettingsRowMiddle">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_accessibility_control" /><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View android:id="@+id/setting_accessibility_divider" style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/setting_notification_access" style="@style/SettingsRowMiddle">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_notification_access" /><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/setting_app_permissions" style="@style/SettingsRowMiddle">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_app_permissions" /><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/setting_access_control" style="@style/SettingsRowBottom">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_access_control" /><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/CardGroup">
+            <TextView style="@style/SettingsCardHeading" android:text="@string/settings_section_service" />
+            <View style="@style/SettingsDivider" />
+
+            <RelativeLayout android:id="@+id/setting_auto_start" style="@style/SettingsRowMiddle">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_auto_start" /><CheckBox android:id="@+id/setting_auto_start_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/setting_mdns" style="@style/SettingsRowBottom">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_mdns" /><com.github.stjiege.ftpshare.ui.SubtitleTextView style="@style/SettingsSubtitle" android:text="@string/setting_mdns_att" /></LinearLayout><CheckBox android:id="@+id/setting_mdns_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/CardGroup">
+            <TextView style="@style/SettingsCardHeading" android:text="@string/settings_section_tools" />
+            <View style="@style/SettingsDivider" />
+
+            <RelativeLayout android:id="@+id/setting_laboratory" style="@style/SettingsRowMiddle">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_laboratory" /><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/setting_analytics" style="@style/SettingsRowMiddle">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_analytics" /><CheckBox android:id="@+id/setting_analytics_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/setting_check_update" style="@style/SettingsRowBottom">
+                <LinearLayout style="@style/SettingsTextGroup" android:layout_marginRight="96dp"><TextView android:id="@+id/setting_check_update_title" style="@style/SettingsTitle" android:text="@string/action_check_update" /><com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/setting_check_update_subtitle" style="@style/SettingsSubtitle" android:text="@string/item_check_update_att" /></LinearLayout>
+                <!-- 右箭头换成两位作者的圆形头像；整行依然可点，行为不变。
+                     裁圆由 ui.CircleImageView 在 onDraw 里用 clipPath 完成：
+                     原先的 clipToOutline + outlineProvider="background" 在 Android 10 上不生效。 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
+
+                    <com.github.stjiege.ftpshare.ui.CircleImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/avatar_author_1" />
+
+                    <com.github.stjiege.ftpshare.ui.CircleImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="6dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/avatar_author_2" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

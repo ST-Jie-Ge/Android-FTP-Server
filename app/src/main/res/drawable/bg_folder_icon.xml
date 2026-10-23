@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 列表项里文件夹图标的圆角底：把图标衬出来，避免一堆同色方块。 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/color_brand_soft" />
+    <corners android:radius="9dp" />
+</shape>

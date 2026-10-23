@@ -1,0 +1,245 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
+// Crashlytics：与 google-services 插件同代。负责上传混淆 mapping、注入 build id。
+apply plugin: 'com.google.firebase.crashlytics'
+
+repositories {
+    flatDir { dirs 'libs' }
+}
+
+def signingProperties = new Properties()
+def signingPropertiesFile = rootProject.file('keystore.properties')
+if (signingPropertiesFile.exists()) {
+    signingPropertiesFile.withInputStream { signingProperties.load(it) }
+}
+
+android {
+    ndkVersion '26.1.10909125'
+    externalNativeBuild {
+        ndkBuild { path file('src/main/cpp/Android.mk') }
+    }
+    namespace 'com.github.stjiege.ftpshare'
+    compileSdk 34
+    buildFeatures {
+        aidl true
+        buildConfig true
+    }
+    defaultConfig {
+        applicationId "com.github.stjiege.ftpshare"
+        // FTP Server G2 no longer supports Android 4/5.
+        minSdkVersion 23
+        targetSdk 34
+        // 只保留中英文两种资源。material 1.11.0 / appcompat 1.6.1 自带 88 种语言的
+        // 字符串，本工程只用 values/ 与 values-en/，其余 86 种会白白撑大 resources.arsc
+        // （实测 arsc 1.07MB，占整个 APK 的 27%）。裁剪后约降到 0.25MB。
+        // 注意：只影响 res/ 里的 Android 资源；jar 里的 FtpStatus_*.properties 是
+        // Java 资源，不走 arsc，不受这行影响。
+        // Keep the exact qualifier used by the Chinese resources.  Keeping only `zh`
+        // strips values-zh-rCN during packaging, so AppCompat's zh-CN locale falls
+        // through to the system English fallback.
+        resourceConfigurations += ['zh-rCN', 'en']
+        // 递增：ABOR 快速通道补锁外打断——accept 等待窗口下传输线程持有 factory 锁
+        // （closeDataConnection 会被挡），先在锁外 close 监听 socket 打断 accept。
+        // 上一版（1.2.15）：LIST/NLST/MLSD 搬传输池 + ABOR 快速通道 + 禁用 MD5/MMD5。
+        // 递增：应用内语言迁移到 AppCompatDelegate.setApplicationLocales（官方机制，
+        // 修复部分二级页在"系统英文+固定中文"下显示英文的问题；Android 13+ 系统设置的
+        // per-app 语言自动同步）。上一版（1.03/5）：IPv6 开关 + 主动模式开关。
+        // 递增：传输链路清理——禁用 ASCII 传输类型（TYPE A 回 504，存储端不再改写用户
+        // 文件行尾；参考 RFC 3659 与 proftpd/vsftpd 的 binary-only 惯例）、RETR 删除上游
+        // 白占的 BufferedInputStream、transfer() 删除不可达的限速死代码并重写为单层循环。
+        // 上一版（1.04/6）：语言机制迁移 + values-zh 回退修复 + R8 低风险收口。
+        // 递增：命令参数支持 RFC 3659 quoted-string（覆盖 DefaultFtpRequest，剥配对
+        // 引号 + "" 转义还原）——修复 ES 文件管理器等"加引号"客户端无法访问带空格目录。
+        // 上一版（1.05/7）：禁 ASCII + RETR 去白占缓冲 + transfer 单层化。
+        // 递增：TYPE A 从"504 拒绝"改为"200 接受但传输永远二进制"——Windows 资源管理器
+        // (WinInet) 等老客户端把 TYPE 504 当致命错误直接放弃，无法访问。数据保护不受影响
+        // （ASCII 行尾转换代码已在 IODataConnection.transfer() 删除，文件仍字节级原样存取），
+        // 与 FileZilla Server 的策略一致。上一版（1.06/8）：quoted-string 引号修复。
+        // 版本号重编（用户指定）：1.07/9 → 1.05/6。代码为当前全部改动（quoted-string
+        // 引号修复 + TYPE A 接受但传输永远二进制 + 禁 ASCII 转换 + R8 收口 + 语言迁移等），
+        // 仅对外版本序列调整。注意：versionCode 6 小于曾在本机存在过的 7/8/9，
+        // 装过 7/8/9 的设备需先卸载才能覆盖安装。
+        // 更正（后补，勿改上面历史条目）：上面"TYPE A 接受但传输永远二进制"已被后续改动
+        // 取代——TYPE A 现在做真正的 NVT 行尾转换（下载 \n→\r\n、上传 \r\n→\n），
+        // 见 IODataConnection.transfer() 与 impl/AsciiTransfer。以代码为准。
+        // 递增：① 传输链路修复——目录列举独立闸门（LIST/NLST/MLSD 不再与文件传输抢槽）、
+        //   processRequest 去掉 synchronized(session)、transferToClient 单次编码、
+        //   STOR 截断推迟到首次落盘、exceptionCaught 不再阻塞等待 10s、IPv6 回退不再泄漏
+        //   线程池、UpdateChecker 关流、广播注册补导出标志；② 编码——OPTS UTF8 一律回 200
+        //   并把该连接钉到 UTF-8（GBK 模式下 UTF-8 客户端不再乱码），控制连接解码/响应编码/
+        //   目录列举三处统一走会话字符集；③ release 包接入库内部日志——log4j Appender 只转发
+        //   WARN 及以上到 LogManager（限流 20 条/分钟），MINA 的 "Unexpected exception." 从此
+        //   在 release 里留得下；④ 删除废弃的 wake_lock/wifi_lock 两个 SP key。
+        //   上一版（1.05/6）：quoted-string 引号修复 + TYPE A。
+        // 递增：① 修复操作日志用户名恒为「未知用户」——上游 PASS 认证成功后会把
+        //   userArgument 置 null，FtpLogFtplet 改为优先取 getUser().getName()；
+        //   ② 库内部日志收紧——相同（logger+消息+异常类型）每分钟只记一条、堆栈截断到
+        //   前 8 帧（去掉 ThreadPoolExecutor/Thread.run 固定尾巴）。上一版（1.06/7）：
+        //   传输链路修复 + OPTS UTF8 按会话字符集 + release 库内部日志接入。
+        // 递增：移除死依赖 commons-logging-1.2.jar（61KB）——全量引用扫描确认零引用者
+        //   （app/libs 全部 jar、Gradle 缓存 683 个依赖、app/src 源码、release dex 四项全查；
+        //   仅构建期工具 AGP/httpclient/netty/groovy 里有，它们不进 APK）。同步删除
+        //   proguard 里 -keep/-dontwarn org.apache.commons.** 两条（目标已不存在）。
+        //   mina 2.x 起已改用 slf4j，这是 mina 1.x 时代的历史遗留。备份
+        //   .backup/commons-logging/。上一版（1.07/8）：日志用户名修复 + 库内部日志去重。
+        // 递增：断开原因可判定化（先修自己误判，再补观测能力）。
+        //   ① 修正分类器：SocketTimeoutException 是数据 socket 上我们自己的 SO_TIMEOUT
+        //      （dataConfig.setIdleTime(60)）到期——服务端 60 秒没收到字节、自己放弃传输，
+        //      属于「停滞」证据而非「对端离开」，此前被一并归入"客户端断开"并丢掉堆栈，
+        //      等于把唯一能证明故障的一类事件消音。现在保留堆栈、标 ERROR、注明是服务端超时。
+        //      同时措辞去掉"客户端断开"断言：RST 同样可能来自客户端崩溃/掉线/NAT 超时。
+        //   ② 登录成功漏记：afterCommand 里 PASS 只在 !=230 时落日志，230 被显式跳过，
+        //      而 onLogin 回调在本工程没有触发点 → 日志里永远 0 条"登录成功"，
+        //      无法统计重连频率。现由 afterCommand 兜底（onLogin 已记则去重）。
+        //   ③ FtpLogFtplet 补连接生命周期：onConnect 记「60s 内第 N 条连接 / 距上条多久」，
+        //      onDisconnect 记「时长 / 空闲 / 是否登录 / 传输完成几比几 / 是否发过 QUIT」并给出
+        //      正常退出 vs 异常断开的区分。掉线重连从此可读出来，不再靠猜。
+        //      刻意不输出"疑似掉线"结论：多线程下载器本来就会开 4–8 条连接，
+        //      任何低阈值都会把正常批量传输误报成故障。上一版（1.09/10）：删 commons-logging。
+        // 版本号重编（用户指定）：1.10/11 → 1.06/6。代码内容不变，仅对外版本序列回调。
+        //   注意：versionCode 6 小于本机已出过的 7/8/9/10/11，装过这些版本的设备
+        //   必须先卸载才能覆盖安装（INSTALL_FAILED_VERSION_DOWNGRADE）。
+        // 1.07/7：跨卷移动（RNTO）专用车道 + 拷贝走 FileChannel.transferTo；另外去掉
+        //   四处 await 关闭完成——实测把 MINA 的 I/O 线程钉死满 10 秒（详见 DefaultFtpHandler）。
+        // 1.08/8：修复重命名（RNFR/RNTO）全线失败——上传防截断包装层把每个 FtpFile 换成了
+        //   代理对象，而 move() 的实现会把入参强转/判实例回具体类（详见该类注释）。
+        // 1.09/9：① 重命名不再失败关闭——renameat2(RENAME_NOREPLACE) 在 FUSE/sdcardfs 上
+        //   常回 EINVAL/ENOSYS，native 侧新增降级（跨卷照旧回 EXDEV 走拷贝回退；同卷用
+        //   link+unlink 或存在性预检 + rename(2)）。此前内核/文件系统不支持时，重命名整体
+        //   不可用，且跨卷拷贝的最后一步"临时文件改名提交"也会一起失败——这就是"重命名失败"
+        //   与"跨卷传输失败"的共同根因。
+        //   ② 移动语义统一：抽出 MoveSupport 作为唯一入口，并由 SafeMoveFileSystemFactory
+        //   装饰任意文件系统视图，匿名 / 具名 / 完整存储三类账户从此共用同一条移动路径。
+        //   此前只有完整存储账户有 SafeMove 事务、跨卷拷贝、路径租约与并发额度，其余账户
+        //   走的是上游 NativeFtpFile 的裸 File.renameTo()（跨卷必失败）。
+        //   ③ 匿名与具名装配统一：home 解析共用 StorageUtil.resolveHomeDirectory；
+        //   目录不可用时两类账户行为一致（都注册 + 同一条告警 + 启动汇总），
+        //   具名账户保存前补目录有效性校验（与匿名一致）。
+        //   ④ RNFR/RNTO 失败日志放开"每会话只记第一条"的节流，553 的分支从此留得下。
+
+        // 1.15 / 11 —— 界面：访问路径选择页 + 账户页操作栏
+        //   ① 路径选择页重做：顶部一整条 header（存储分段切换 + 可点面包屑）+ 中间整块列表
+        //      + 底部操作栏。原先是「裸 Spinner + 一行绝对路径 + ListView」，操作全挂在
+        //      ActionBar 三个没有文案的图标上（"取消"实际是返回上级）。"返回上级"不再是
+        //      名字叫 ".." 的文件夹，改成独立样式的一行；补骨架屏与空目录 / 不可读目录
+        //      提示（原来目录读不了时界面一片空白，只有日志里有一行）。
+        //   ② 账户页的保存 / 删除从 ActionBar 移到底部操作栏：删除在左（危险色描边 + 文案），
+        //      保存在右（主色实心），顶栏只留返回。删除的二次确认由"1 秒内连点两次"
+        //      改为真正的确认弹窗。新建页不显示删除；匿名页同样把保存移到按钮。
+        // 1.16 / 12 —— FTPS 与上传兜底改造：
+        //   ① TLS 1.2 会话复用优化（256/8h ID 缓存、64 被动端口收敛）并加命中率日志；
+        //   ② 实验室功能新增 FTPS 优先 ChaCha20-Poly1305（默认关，无 AES 指令设备提速）；
+        //   ③ 覆盖上传/REST 续传走 staged 临时文件，失败/取消自动回滚，不再截断原文件；
+        //   ④ 手动停止 FTP 后自动清扫 .ftp-upload-*.tmp 孤儿临时文件并锁定开关；
+        //   ⑤ HASH SHA-256 校验命令；RETR/STOR 补 RuntimeException 兜底。
+        versionCode 19
+        versionName "1.13"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    signingConfigs {
+        release {
+            storeFile rootProject.file(signingProperties['storeFile'])
+            storePassword signingProperties['storePassword']
+            keyAlias signingProperties['keyAlias']
+            keyPassword signingProperties['keyPassword']
+        }
+    }
+    buildTypes {
+        release {
+            lint {
+                checkReleaseBuilds true
+                abortOnError true
+            }
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // Crashlytics mapping 自动上传在当前网络不可达（代理对 Firebase 端点 502），
+            // 会导致 assembleRelease 失败。崩溃上报功能不受此影响，只是控制台里堆栈
+            // 显示混淆名。网络可用时可临时改回 true 跑一次
+            // `./gradlew :app:uploadCrashlyticsMappingFileRelease` 补传符号表。
+            firebaseCrashlytics {
+                mappingFileUploadEnabled false
+            }
+        }
+        // 试验包（assembleTrial）：包名加 .trial 后缀，可与正式包并存安装，专门用来对比
+        // 字体/界面效果，不进发布流程。
+        // 能安全并存的原因：manifest 里所有对外标识都写成 ${applicationId} 前缀 ——
+        // FileProvider 与 Shizuku 的 authorities、自定义权限 CONTROL_FTP，换包名后自动区分，
+        // 不会撞 provider / 不会 INSTALL_FAILED_DUPLICATE_PERMISSION。
+        // 前提：google-services.json 里必须有 package_name = com.github.stjiege.ftpshare.trial
+        // 的 client，否则 google-services 插件会以 "No matching client found" 直接失败。
+        // 运行期注意：两个包共用同一个 FTP 默认端口，别同时开着服务。
+        trial {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix '.trial'
+            versionNameSuffix '-trial'
+            // 与 release 同理：Firebase 映射上传在本机网络不可达，开着会让构建失败。
+            firebaseCrashlytics {
+                mappingFileUploadEnabled false
+            }
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // Firebase Analytics is consent-gated in the manifest and AppAnalytics.
+    // Analytics 22.x is compiled with Kotlin 2.x metadata. BoM 32.7.4's
+    // Analytics 21.5.1 is the newest compatible line for this project's Kotlin 1.9.22.
+    implementation platform('com.google.firebase:firebase-bom:32.7.4')
+    implementation 'com.google.firebase:firebase-analytics'
+    // Crashlytics 崩溃日志：版本由上面的 BoM 统一管理（18.x 线，与 Analytics 21.5.1 同代、
+    // 兼容 Kotlin 1.9.22）。默认采集关闭（manifest meta-data），跟随 AppAnalytics 的同意开关。
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation files('libs/ftplet-api-1.1.1.jar')
+    implementation files('libs/log4j-1.2.17.jar')
+    implementation files('libs/mina-core-2.2.9.jar')
+    implementation files('libs/slf4j-api-1.7.21.jar')
+    implementation files('libs/slf4j-log4j12-1.7.21.jar')
+    // commons-logging-1.2.jar 已于 2026-10-02 移除：全量引用扫描（app/libs 全部 jar、
+    // Gradle 缓存 683 个依赖、app/src 源码、release dex）确认零引用者——mina 2.x 起已改用
+    // slf4j，这个 jar 是 mina 1.x 时代的历史遗留。只有构建期工具（AGP/httpclient/netty/
+    // groovy/kotlin-gradle-plugin）里出现，它们都不进 APK（dex 中 netty/http 均为 0 类）。
+    // 备份在 .backup/commons-logging/，需要时可回退。
+    // compat-v4 保留隐藏文件及 FEAT 定制；迁到源码的会话、AUTH 和密码类已从 jar 移除。
+    // 由于修改并重写了 jar 中的几个类，所以删掉了这些 class，修改后的类在主路径 org 对应的包中，用于支持编码修改。
+    implementation files('libs/ftpserver-core-1.1.1-compat-v4.jar')
+
+    // 抬升说明（2026-09-30）：从 1.0.0（2018 年）抬到当前 compileSdk 34 能容纳的最后一批稳定版。
+    // 选版原则是不追新、只求稳：这两个版本都是 2023 年发布、经过长期验证的 1.x 终版，
+    // 再往上一档（material 1.12.0 / appcompat 1.7.0）就要求 compileSdk 35+，
+    // 会连带把 AGP、Gradle、JDK 一起拖上升级链，对本项目没有对应收益。
+    // core 不在这里显式声明：由 appcompat 1.6.1 传递引入 core 1.9.0，
+    // 保持官方测试过的组合（material 1.11.0 -> appcompat 1.6.1 -> core 1.9.0），避免版本混搭。
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    // WorkManager：FTP 服务自愈 + 日志定期清理。选 2.9.0 是与上面同一批"不追新、只求稳"
+    // 的原则——它要求 compileSdk 34（本项目正好是 34），再往上的 2.10 需要 35+。
+    // 用 Java 版 work-runtime 而不是 -ktx：本项目只有少量 Kotlin UI，ktx 会额外拖进协程。
+    implementation 'androidx.work:work-runtime:2.9.0'
+    //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //implementation 'com.android.support:support-vector-drawable:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation(name: 'shizuku-api-12.1.0', ext: 'aar')
+    implementation(name: 'shizuku-provider-12.1.0', ext: 'aar')
+    implementation(name: 'shizuku-aidl-12.1.0', ext: 'aar')
+    implementation(name: 'shizuku-shared-12.1.0', ext: 'aar')
+}

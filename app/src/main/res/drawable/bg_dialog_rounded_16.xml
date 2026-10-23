@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 分析同意弹窗专用窗口背景：16dp 圆角。
+     与全局的 bg_dialog_rounded.xml（24dp）分开，是因为本弹窗正文极长，
+     大圆角 + 长正文会显得过于圆胖；但 24dp 是全局样式（13 处对话框在用），
+     不能动，所以这里单独建一个，只由 styles.xml 的 AppAnalyticsConsentDialog 使用。 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@android:color/white" />
+    <corners android:radius="16dp" />
+</shape>

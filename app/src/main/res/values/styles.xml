@@ -1,0 +1,205 @@
+<resources>
+
+    <!-- Base application theme.
+         2026-09-30 改动：父主题从 Theme.AppCompat.Light.DarkActionBar 换成同名的
+         MaterialComponents **Bridge** 版本。
+         用 Bridge 而不是普通 MaterialComponents 主题，是为了让外观保持原样：
+         Bridge 专门给「从 AppCompat 渐进迁移」用，它不会把按钮文字变成大写、
+         也不会改动勾选框、输入框、进度条的现有样式，但会补上 colorSurface、
+         colorOnSurface 等 Material 属性 —— 有了这些属性，TextInputLayout（浮动标签输入框）
+         和 MaterialAlertDialog（圆角对话框）才能正常工作。
+         将来若想让全局控件统一换成 Material 风格，把名字末尾的 .Bridge 去掉即可。 -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- 2026-09-30 新增：让所有对话框都带上圆角，见下方 AppAlertDialog 的说明。 -->
+        <item name="alertDialogTheme">@style/AppAlertDialog</item>
+        <!-- 2026-09-30 补齐：Bridge 主题**缺**的控件样式映射。
+             实测（material 1.11.0 AAR）这个 DarkActionBar 变体的父链是
+             Base.V14.Theme.MaterialComponents.Light.DarkActionBar.Bridge
+             -> Theme.AppCompat.Light.DarkActionBar，其样式体里只有颜色与 textAppearance，
+             一条 materialXxxStyle 都没有；而同族的 Light.Bridge（无 DarkActionBar）是有的。
+             后果：凡是以 ?attr/materialXxxStyle 取默认样式的 Material 控件都会解析到 0，
+             然后静默退回控件自己代码里的兜底样式 —— 例如 MaterialButton 会退回
+             Widget.MaterialComponents.Button（实心填充），而不是描边按钮，且不报任何错。
+             这里按官方 Theme.MaterialComponents.Light 的取值补上，属于"把主题说全"，
+             不改动任何现有控件外观（本工程布局里没有 style="?attr/materialButtonStyle" 的引用，
+             <Button> 仍由 AppCompat 的 buttonStyle 走 AppCompatButton）。 -->
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.MaterialComponents.Button.OutlinedButton</item>
+    </style>
+
+    <!-- 2026-09-30 新增：统一的对话框外观。
+         这里刻意用 ThemeOverlay（叠加）而不是写一个完整主题：只覆盖窗口背景这一项，
+         内边距、按钮位置、文字样式这些全部沿用系统默认值，避免顺手改坏其它外观。
+         背景换成 24dp 圆角白底（drawable/bg_dialog_rounded.xml），
+         尺寸沿用改造前 ModernDialogStyle 手写的 24dp，保证老用户看到的形状不变。
+         好处是不用逐个改 Java / Kotlin 代码 —— 由 AlertDialog.Builder 创建的老对话框
+         （账户、匿名账户、IP 白名单、新建文件夹等共 13 处）会自动套上圆角，
+         之前只有 5 处调用了 ModernDialogStyle 才有圆角。 -->
+    <style name="AppAlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog_rounded</item>
+    </style>
+
+    <!-- 数据出境同意弹窗专用（方案 B′，2026-10-01）。
+         只给这一个弹窗用：圆角 16dp（全局是 24dp，正文太长时 24dp 显得圆胖），
+         并把宽度钉在 320dp —— 默认 windowMinWidthMajor/Minor 是屏幕的 65%，
+         配上长正文会几乎顶满屏宽。其余对话框不受影响（它们仍走 AppAlertDialog）。 -->
+    <style name="AppAnalyticsConsentDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog_rounded_16</item>
+        <item name="windowMinWidthMajor">320dp</item>
+        <item name="windowMinWidthMinor">320dp</item>
+    </style>
+
+    <!-- 2026-09-30 新增：应用内统一的描边按钮。
+         直接继承 Material 的 public 样式 Widget.MaterialComponents.Button.OutlinedButton，
+         而不是让控件去查 ?attr/materialButtonOutlinedStyle —— 本工程的 Bridge 主题里那条映射
+         本来就缺失（见 AppTheme 注释），走 attr 会静默退回实心按钮，且不报任何错。
+         这里把尺寸与外观一次定死，日志页那排操作按钮共用它；以后新增按钮也应当用它，
+         风格才不会再次散开。只放外观参数，layout_width / weight 之类留给各布局自己写。
+
+         比改造前手写的 bg_button_outline 多出来的实质好处：禁用态有明确反馈
+         （描边与文字一起变淡）。旧 drawable 是张死图，"保存日志"被禁用时看起来照样可点，
+         点了却没有反应。 -->
+    <style name="AppOutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <!-- Material 按钮自带上下 inset，不归零等于白占 12dp 高。 -->
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <!-- 等宽排列时必须归零，否则窄屏下三个按钮会各自撑破宽度。 -->
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textAllCaps">false</item>
+        <!-- 圆角跟卡片（bg_card 的 14dp）保持同一族，不要用 Material 默认的 4dp 方角。 -->
+        <item name="cornerRadius">10dp</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <!-- 页面底色是浅灰，按钮留白底才能从背景里浮出来。 -->
+        <item name="backgroundTint">@color/log_action_button_background</item>
+        <item name="android:textColor">@color/log_action_button_text</item>
+    </style>
+
+    <!-- Desk clock: black full-screen window without an action bar.
+         与 AppTheme 同样换成 Bridge 版本，理由见上方注释（外观不变、补上 Material 属性）。 -->
+    <style name="AppTheme.Clock" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- A rounded white card that groups related rows on the tinted page background. -->
+    <style name="CardGroup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/bg_card</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="SettingsSection">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/color_text_att</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- Compact non-clickable heading inside the settings card. -->
+    <style name="SettingsCardHeading" parent="SettingsSection">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+    <style name="SettingsRow">
+        <item name="android:layout_width">match_parent</item>
+        <!-- Rows grow with their content: a fixed height silently clipped long subtitles. -->
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">64dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+    <!-- Row backgrounds are position aware so the press ripple follows the card corners. -->
+    <style name="SettingsRowTop" parent="SettingsRow">
+        <item name="android:background">@drawable/bg_card_row_top</item>
+    </style>
+    <style name="SettingsRowMiddle" parent="SettingsRow">
+        <item name="android:background">@drawable/bg_card_row_middle</item>
+    </style>
+    <style name="SettingsRowBottom" parent="SettingsRow">
+        <item name="android:background">@drawable/bg_card_row_bottom</item>
+    </style>
+    <style name="SettingsRowSingle" parent="SettingsRow">
+        <item name="android:background">@drawable/bg_card_row_single</item>
+    </style>
+    <style name="SettingsTextGroup">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">56dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="SettingsTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_text_dark</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="SettingsSubtitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:textColor">@color/color_text_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="SettingsArrow">
+        <item name="android:layout_width">15dp</item>
+        <item name="android:layout_height">15dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:src">@drawable/arrow_right</item>
+    </style>
+    <style name="SettingsCheck">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+    <!-- Hairline, inset to align with the row title. -->
+    <style name="SettingsDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2px</item>
+        <item name="android:background">@color/color_card_divider</item>
+        <item name="android:layout_marginLeft">16dp</item>
+    </style>
+</resources>

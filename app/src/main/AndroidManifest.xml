@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <permission
+        android:name="${applicationId}.permission.CONTROL_FTP"
+        android:protectionLevel="normal" />
+
+    <!-- Android 10（API 29）专项：本应用 targetSdk 34，已越过 scoped storage 的分界线，
+         系统默认按分区存储运行 —— 此时即便 READ/WRITE_EXTERNAL_STORAGE 已授予，
+         共享存储上的 File.listFiles() 仍会返回空，表现为「选目录页空白、FTP 客户端列不出文件」。
+         该标志让 Android 10 回到旧版存储模型；Android 11+ 系统直接忽略它，无副作用
+         （11+ 走 MANAGE_EXTERNAL_STORAGE「所有文件访问」）。
+         官方说明见 developer.android.com/about/versions/11/privacy/storage
+         的 "Maintain compatibility with Android 10" 一节。 -->
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/appicon"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/appicon"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
+        <!-- Keep all Firebase measurement disabled until the user enables it in Settings.
+             Crashlytics follows the same consent gate as Analytics (AppAnalytics.setEnabled). -->
+        <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
+        <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
+        <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.AddAccountActivity"
+            android:label="@string/activity_title_add" />
+        <activity
+            android:name=".activities.EditAccountActivity"
+            android:label="@string/activity_title_edit" />
+        <activity
+            android:name=".activities.AnonymousAccountActivity"
+            android:label="@string/activity_title_edit" />
+        <activity
+            android:name=".activities.ServiceAccountActivity"
+            android:label="@string/item_account_settings" />
+        <activity
+            android:name=".activities.ServerSettingsActivity"
+            android:label="@string/item_server_settings" />
+        <activity
+            android:name=".activities.FolderSelectorActivity"
+            android:label="@string/account_path_dialog_title" />
+        <activity
+            android:name=".activities.LogDirectoryActivity"
+            android:label="@string/log_directory_title" />
+        <activity android:name=".activities.LogSettingsActivity" android:label="@string/title_logs" />
+        <activity android:name=".activities.LaboratoryActivity" android:label="@string/setting_laboratory" />
+        <activity android:name=".activities.AccessControlActivity" android:label="@string/setting_access_control" />
+        <activity android:name=".activities.IpWhitelistActivity" android:label="@string/ip_whitelist_title" />
+        <activity
+            android:name=".activities.ClockActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|smallestScreenSize"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme.Clock" />
+
+        <service
+            android:name=".services.FtpService"
+            android:foregroundServiceType="dataSync"
+            android:exported="false" />
+        <service
+            android:name=".services.FtpAccessibilityService"
+            android:description="@string/accessibility_service_description"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/ftp_accessibility_service" />
+        </service>
+        <service
+            android:name=".services.MyTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_ex_24dp"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".receivers.BootCompletedReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!-- 应用内语言（AppCompatDelegate.setApplicationLocales）跨启动持久化。
+             autoStoreLocales=true 时由 appcompat 自动读写，无需应用代码参与。 -->
+        <service android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false" android:exported="false">
+            <meta-data android:name="autoStoreLocales" android:value="true" />
+        </service>
+        <receiver android:name=".services.FtpService$StopServiceReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="${applicationId}:stop_ftp_service" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".services.FtpService$CopyAddressReceiver" android:exported="false" />
+        <receiver
+            android:name=".receivers.FtpControlReceiver"
+            android:exported="true"
+            android:permission="${applicationId}.permission.CONTROL_FTP">
+            <intent-filter>
+                <action android:name="${applicationId}.action.START_FTP" />
+                <action android:name="${applicationId}.action.STOP_FTP" />
+            </intent-filter>
+        </receiver>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+        </provider>
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:multiprocess="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    </application>
+
+</manifest>

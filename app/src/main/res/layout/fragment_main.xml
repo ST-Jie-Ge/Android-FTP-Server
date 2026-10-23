@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_frame_sr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_page_background"
+    tools:context=".fragments.MainFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/main_storage_permission_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_banner_warning"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="13dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="13dp"
+            android:text="@string/main_storage_permission_warning"
+            android:textColor="@color/color_banner_warning_text"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/main_battery_optimization_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_banner_error"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="13dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="13dp"
+            android:text="@string/main_battery_optimization_warning"
+            android:textColor="@color/color_banner_error_text"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/main_accessibility_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_banner_error"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="13dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="13dp"
+            android:text="@string/main_accessibility_warning_revoked"
+            android:textColor="@color/color_banner_error_text"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <!-- The status row opens the address list.  The right-side transparent hit area is
+             deliberately wider than the visual switch, preventing accidental address-list taps. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/main_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_row_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="86dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="112dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/main_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/item_main"
+                        android:textColor="@color/color_text_dark"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                        android:id="@+id/main_att"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="13sp"
+                        tools:text="Start FTP Service" />
+                </LinearLayout>
+
+                <!-- 热区从右边缘向左扩到 104dp。高度必须写死成与 minHeight 相同的 86dp：
+                     RelativeLayout 自身是 wrap_content 时，子视图的 match_parent 拿不到真实高度
+                     （测量规格是 UNSPECIFIED，会被按 wrap_content 量成开关本身的高度），
+                     再配上 centerVertical 才能真正上下居中。开关本体仍按 16dp 右边距贴右。 -->
+                <FrameLayout
+                    android:id="@+id/main_switch_hit_area"
+                    android:layout_width="104dp"
+                    android:layout_height="86dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/main_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="16dp"
+                        android:clickable="false"
+                        android:focusable="false" />
+                </FrameLayout>
+            </RelativeLayout>
+            <View android:layout_width="match_parent" android:layout_height="2px" android:layout_marginLeft="16dp" android:layout_marginRight="16dp" android:background="@color/color_card_divider" />
+            <com.github.stjiege.ftpshare.views.ResourcePanel
+                android:id="@+id/main_resources"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- 账户设置：独立成卡片，紧挨在性能监视器（状态卡）下方。 -->
+        <LinearLayout style="@style/CardGroup">
+            <RelativeLayout
+                android:id="@+id/setting_area"
+                style="@style/SettingsRowSingle">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/item_account_settings"
+                        android:textColor="@color/color_text_dark"
+                        android:textSize="15sp" />
+
+                    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                        android:id="@+id/setting_area_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/item_account_settings_subtitle"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- 服务端设置：7 项服务端参数已整合进二级页 ServerSettingsActivity，主界面只留入口。 -->
+        <LinearLayout style="@style/CardGroup">
+            <RelativeLayout
+                android:id="@+id/server_settings_area"
+                style="@style/SettingsRowSingle">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="60dp"
+                    android:text="@string/item_server_settings"
+                    android:textColor="@color/color_text_dark"
+                    android:textSize="15sp" />
+
+                <ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- “检查更新”已移到设置页实验室入口的下方。 -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible"></LinearLayout>
+    </LinearLayout>
+</ScrollView>

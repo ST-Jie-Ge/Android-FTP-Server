@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_page_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/log_settings_testing_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_banner_error"
+            android:paddingLeft="20dp"
+            android:paddingTop="13dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="13dp"
+            android:text="@string/log_settings_testing_notice"
+            android:textColor="@color/color_banner_error_text"
+            android:textSize="14sp" />
+
+        <LinearLayout style="@style/CardGroup">
+
+            <RelativeLayout android:id="@+id/log_setting_auto_save" style="@style/SettingsRowTop">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/log_setting_auto_save" /><com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/log_setting_auto_save_value" style="@style/SettingsSubtitle" /></LinearLayout><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/log_setting_level" style="@style/SettingsRowMiddle">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/log_setting_level" /><com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/log_setting_level_value" style="@style/SettingsSubtitle" /></LinearLayout><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/log_setting_max_lines" style="@style/SettingsRowBottom">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/log_setting_max_lines" /><com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/log_setting_max_lines_value" style="@style/SettingsSubtitle" /></LinearLayout><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/clock_root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#000000">
+    <WebView android:id="@+id/clock_web" android:layout_width="match_parent" android:layout_height="match_parent" android:overScrollMode="never" android:scrollbars="none" />
+    <com.github.stjiege.ftpshare.views.ClockStatusView android:id="@+id/clock_status" android:layout_width="72dp" android:layout_height="36dp" android:layout_gravity="top|start" android:layout_marginLeft="16dp" android:layout_marginTop="10dp" />
+    <ImageButton android:id="@+id/clock_exit" android:layout_width="48dp" android:layout_height="48dp" android:layout_gravity="top|end" android:layout_marginRight="8dp" android:layout_marginTop="4dp" android:background="#000000" android:padding="14dp" android:src="@drawable/clock_close" android:contentDescription="@string/clock_exit" />
+</FrameLayout>

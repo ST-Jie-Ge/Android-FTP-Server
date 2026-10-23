@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingTop="12dp"
+    android:paddingRight="24dp"
+    android:paddingBottom="12dp">
+
+    <TextView
+        android:id="@+id/worker_threads_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/color_text_dark"
+        android:textSize="40sp"
+        android:fontFamily="sans-serif-medium"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp" />
+
+    <SeekBar
+        android:id="@+id/worker_threads_slider"
+        android:minHeight="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/dialog_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textColor="@color/color_text_warning"
+        android:textSize="12sp"
+        android:visibility="gone" />
+</LinearLayout>

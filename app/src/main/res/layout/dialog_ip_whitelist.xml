@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- IP 白名单编辑弹窗。
+     2026-09-30 说明：这一页的输入框仍沿用原生 EditText，没有换成 TextInputLayout 浮动标签。
+     两个原因：一是这里的标签文字会随上方单选类型动态切换
+     （见 IpWhitelistActivity 里 dialog_ip_address_label 的用法），抽成 hint 反而要多写一套同步逻辑；
+     二是前缀位只有 56dp 宽，浮动标签根本放不下，硬套会把这一行挤变形。
+     高频的通用单输入框弹窗（端口、连接数、账户名、密码、新建文件夹）已经换成浮动标签，
+     见 layout_with_edittext.xml。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="4dp">
+
+    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ip_whitelist_type"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/dialog_ip_type_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/dialog_ip_type_single"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/ip_whitelist_type_single"
+            android:textColor="@color/color_text_dark"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/dialog_ip_type_range"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ip_whitelist_type_range"
+            android:textColor="@color/color_text_dark"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/dialog_ip_type_free"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ip_whitelist_type_free"
+            android:textColor="@color/color_text_dark"
+            android:textSize="13sp" />
+    </RadioGroup>
+
+    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+        android:id="@+id/dialog_ip_address_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/ip_whitelist_address"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/dialog_ip_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/color_text_dark"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/dialog_ip_prefix_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textColor="@color/color_text_dark"
+                android:textSize="15sp"
+                tools:ignore="HardcodedText" />
+
+            <EditText
+                android:id="@+id/dialog_ip_prefix"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:textColor="@color/color_text_dark"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Only used by the free-range type: the second address closes the range. -->
+    <LinearLayout
+        android:id="@+id/dialog_ip_end_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.github.stjiege.ftpshare.ui.SubtitleTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ip_whitelist_end_address"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/dialog_ip_end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/color_text_dark"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/ip_whitelist_note_label"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/dialog_ip_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/color_text_dark"
+        android:textSize="15sp" />
+</LinearLayout>

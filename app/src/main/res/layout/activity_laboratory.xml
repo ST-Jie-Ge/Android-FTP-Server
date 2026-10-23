@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_page_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <LinearLayout style="@style/CardGroup">
+
+            <RelativeLayout android:id="@+id/lab_shizuku_access" style="@style/SettingsRowTop">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_shizuku_access" /><com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/lab_shizuku_access_value" style="@style/SettingsSubtitle" /></LinearLayout><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/lab_shizuku_doze" style="@style/SettingsRowMiddle" android:visibility="gone">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_doze_title" /></LinearLayout><CheckBox android:id="@+id/lab_shizuku_doze_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View android:id="@+id/lab_shizuku_doze_divider" style="@style/SettingsDivider" android:visibility="gone" />
+            <RelativeLayout android:id="@+id/lab_shizuku_watchdog" style="@style/SettingsRowMiddle" android:visibility="gone">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_watchdog_title" /><com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/lab_shizuku_watchdog_value" style="@style/SettingsSubtitle" /></LinearLayout><CheckBox android:id="@+id/lab_shizuku_watchdog_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View android:id="@+id/lab_shizuku_watchdog_divider" style="@style/SettingsDivider" android:visibility="gone" />
+            <RelativeLayout android:id="@+id/lab_external_control" style="@style/SettingsRowMiddle">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_external_control" /><com.github.stjiege.ftpshare.ui.SubtitleTextView style="@style/SettingsSubtitle" android:text="@string/setting_external_control_att" /></LinearLayout><CheckBox android:id="@+id/lab_external_control_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/lab_performance_optimization" style="@style/SettingsRowMiddle">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_disable_performance_optimization" /><com.github.stjiege.ftpshare.ui.SubtitleTextView style="@style/SettingsSubtitle" android:text="@string/setting_disable_performance_optimization_att" /></LinearLayout><CheckBox android:id="@+id/lab_performance_optimization_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/lab_desktop_clock" style="@style/SettingsRowMiddle">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_desktop_clock" /><com.github.stjiege.ftpshare.ui.SubtitleTextView style="@style/SettingsSubtitle" android:text="@string/setting_desktop_clock_att" /></LinearLayout><CheckBox android:id="@+id/lab_desktop_clock_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/lab_open_clock" style="@style/SettingsRowMiddle" android:visibility="gone">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_open_clock" /><ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+            <View android:id="@+id/lab_open_clock_divider" style="@style/SettingsDivider" android:visibility="gone" />
+            <RelativeLayout android:id="@+id/lab_chacha20" style="@style/SettingsRowMiddle">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_chacha20" /><com.github.stjiege.ftpshare.ui.SubtitleTextView style="@style/SettingsSubtitle" android:text="@string/setting_chacha20_att" /></LinearLayout><CheckBox android:id="@+id/lab_chacha20_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/lab_legacy_filesystem" style="@style/SettingsRowMiddle">
+                <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_legacy_filesystem" /><com.github.stjiege.ftpshare.ui.SubtitleTextView style="@style/SettingsSubtitle" android:text="@string/setting_legacy_filesystem_att" /></LinearLayout><CheckBox android:id="@+id/lab_legacy_filesystem_cb" style="@style/SettingsCheck" />
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  路径选择列表的一行。同一个布局服务两种行：
+  · position 0 是「返回上级」——图标换成向上箭头、去掉圆角底和右侧箭头、文字用次级色；
+  · 其余是文件夹——圆角图标底 + 名称 + 右侧 chevron。
+
+  两种行共用布局而不是写两份，是为了让它们的行高、内边距、分隔线永远一致。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_folder_row"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
+
+        <FrameLayout
+            android:id="@+id/item_folder_icon_box"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@drawable/bg_folder_icon">
+
+            <ImageView
+                android:id="@+id/item_folder_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/folder_select_here"
+                android:src="@drawable/ic_folder_outline" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/item_folder_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/color_text_dark"
+            android:textSize="14sp"
+            tools:text="Download" />
+
+        <ImageView
+            android:id="@+id/item_folder_chev"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:contentDescription="@string/folder_select_here"
+            android:src="@drawable/arrow_right"
+            app:tint="@color/color_chevron" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/item_folder_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="52dp"
+        android:background="@color/color_card_divider" />
+</LinearLayout>

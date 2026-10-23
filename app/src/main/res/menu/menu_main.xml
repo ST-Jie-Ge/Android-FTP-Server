@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_log_toggle"
+        android:icon="@drawable/ic_log_play"
+        android:orderInCategory="0"
+        android:title="@string/logging_start"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_language"
+        android:icon="@drawable/ic_translate"
+        android:orderInCategory="1"
+        android:title="@string/setting_language"
+        android:visible="false"
+        app:showAsAction="always" />
+
+</menu>

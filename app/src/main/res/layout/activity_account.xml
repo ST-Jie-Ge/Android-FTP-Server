@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_page_background"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="12dp">
+
+        <LinearLayout style="@style/CardGroup">
+
+            <RelativeLayout
+                android:id="@+id/account_user"
+                style="@style/SettingsRowTop">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginBottom="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_user"
+                        android:textColor="@color/color_text_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                        android:id="@+id/account_user_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="user"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="13sp"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+
+                <ImageView style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/account_password"
+                style="@style/SettingsRowMiddle">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginBottom="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_password"
+                        android:textColor="@color/color_text_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                        android:id="@+id/account_password_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <ImageView style="@style/SettingsArrow" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/account_path"
+                style="@style/SettingsRowBottom">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginBottom="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_path"
+                        android:textColor="@color/color_text_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                        android:id="@+id/account_path_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="13sp"
+                        tools:text="/storage/emulated/0" />
+                </LinearLayout>
+
+                <ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/CardGroup">
+
+            <RelativeLayout
+                android:id="@+id/account_full_storage"
+                style="@style/SettingsRowTop">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginBottom="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_full_storage"
+                        android:textColor="@color/color_text_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        android:text="@string/account_full_storage_att"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/account_full_storage_cb"
+                    style="@style/SettingsCheck" />
+
+                <View
+                    style="@style/SettingsDivider"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/account_writable"
+                style="@style/SettingsRowBottom"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="56dp"
+                    android:layout_marginBottom="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/account_writable_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_writable"
+                        android:textColor="@color/color_text_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                        android:id="@+id/account_writable_att"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/account_writable_att"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/account_writable_cb"
+                    style="@style/SettingsCheck" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+
+    <!-- 底部操作栏：保存 / 删除原先挂在 ActionBar 上，两个图标相邻且没有文案，
+         删除还是破坏性操作，靠"1 秒内连点两次"防误触。搬到底部后各就各位：
+         删除在左（弱化的危险色），保存在右（主色实心），顶栏只留返回。 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_card_background"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingTop="10dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/account_action_delete"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="0.38"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_folder_btn_danger"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_account_delete"
+                android:textColor="@color/color_banner_error_text"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/account_action_save"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="0.62"
+            android:background="@drawable/bg_folder_btn_solid"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_account_save"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

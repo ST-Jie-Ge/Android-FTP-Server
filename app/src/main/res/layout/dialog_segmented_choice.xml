@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 服务端设置页「分块按钮」式选择对话框。
+
+     2026-09-30 重做。上一版是在 Java 里 new MaterialButton(context, null,
+     R.attr.materialButtonOutlinedStyle) 动态生成，**这个写法在本项目里是错的**：
+     本工程的 AppTheme 是 Theme.MaterialComponents.Light.DarkActionBar.Bridge，
+     它的父链实际走到 Theme.AppCompat.Light.DarkActionBar（见 values/styles.xml 的注释），
+     只带 Material 的颜色/文字属性，**没有 materialButtonOutlinedStyle 这条控件样式映射**。
+     于是 ?attr/materialButtonOutlinedStyle 解析不到，MaterialButton 静默退回自己的兜底样式
+     Widget.MaterialComponents.Button（实心主色填充）——5 个块全是一个色，看不出选中了谁。
+
+     现在改为在 XML 里声明 5 个块，用 style= 直接点名描边样式（该样式是 public 资源），
+     彻底不依赖主题里有没有那条映射。选项少于 5 个时由 SegmentedChoiceDialog 把多余的块
+     setVisibility(GONE)——MaterialButtonToggleGroup 会跳过 GONE 的子项，首尾圆角仍落在
+     真正可见的第一/最后一块上。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingTop="10dp"
+    android:paddingRight="24dp"
+    android:paddingBottom="10dp">
+
+    <!-- 单选 + 不允许全部取消；选中即回调，所以不需要「确定」。 -->
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/dialog_segmented_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <!-- 下面 5 块结构完全相同，只有 id 递增；真正用几块由 SegmentedChoiceDialog 决定。
+             minWidth=0 + weight=1 才能等宽铺满；左右内边距压到 6dp，
+             否则 5 块分下来每块只有 ~46dp，减去默认的 16dp×2 内边距，"极高"这类两字档位会被截断。
+             insetTop/Bottom=0 去掉描边样式自带的上下 6dp 留白，否则相邻块之间会露出缝。 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_segmented_0"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:maxLines="1"
+            android:minHeight="40dp"
+            android:minWidth="0dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:textAllCaps="false"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_segmented_1"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:maxLines="1"
+            android:minHeight="40dp"
+            android:minWidth="0dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:textAllCaps="false"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_segmented_2"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:maxLines="1"
+            android:minHeight="40dp"
+            android:minWidth="0dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:textAllCaps="false"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_segmented_3"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:maxLines="1"
+            android:minHeight="40dp"
+            android:minWidth="0dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:textAllCaps="false"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_segmented_4"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:maxLines="1"
+            android:minHeight="40dp"
+            android:minWidth="0dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:textAllCaps="false"
+            android:textSize="13sp" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+</LinearLayout>
