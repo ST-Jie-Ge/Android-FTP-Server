@@ -66,7 +66,7 @@
                 <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_analytics" /><CheckBox android:id="@+id/setting_analytics_cb" style="@style/SettingsCheck" />
             </RelativeLayout>
             <View style="@style/SettingsDivider" />
-            <RelativeLayout android:id="@+id/setting_check_update" style="@style/SettingsRowBottom">
+            <RelativeLayout android:id="@+id/setting_check_update" style="@style/SettingsRowMiddle">
                 <LinearLayout style="@style/SettingsTextGroup" android:layout_marginRight="96dp"><TextView android:id="@+id/setting_check_update_title" style="@style/SettingsTitle" android:text="@string/action_check_update" /><com.github.stjiege.ftpshare.ui.SubtitleTextView android:id="@+id/setting_check_update_subtitle" style="@style/SettingsSubtitle" android:text="@string/item_check_update_att" /></LinearLayout>
                 <!-- 右箭头换成两位作者的圆形头像；整行依然可点，行为不变。
                      裁圆由 ui.CircleImageView 在 onDraw 里用 clipPath 完成：
@@ -92,6 +92,11 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/avatar_author_2" />
                 </LinearLayout>
+            </RelativeLayout>
+            <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/setting_feedback" style="@style/SettingsRowBottom">
+                <TextView style="@style/SettingsTitle" android:layout_centerVertical="true" android:layout_marginLeft="16dp" android:text="@string/setting_feedback" />
+                <ImageView style="@style/SettingsArrow" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

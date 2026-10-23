@@ -142,6 +142,8 @@
     <string name="action_update_found">Update available!</string>
     <string name="update_latest_version">Latest version: %s</string>
     <string name="item_check_update_att">Open the project page in your browser</string>
+    <string name="setting_feedback">Report an issue</string>
+    <string name="feedback_qq_unavailable">Could not open QQ. Make sure QQ is installed.</string>
 
     <string name="dialog_button_confirm">confirm</string>
     <string name="dialog_button_cancel">@android:string/cancel</string>

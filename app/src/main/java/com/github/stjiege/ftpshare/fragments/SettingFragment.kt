@@ -46,7 +46,7 @@ class SettingFragment : Fragment() {
             R.id.setting_accessibility_control,
             R.id.setting_notification_access, R.id.setting_app_permissions, R.id.setting_access_control,
             R.id.setting_auto_start, R.id.setting_mdns, R.id.setting_analytics,
-            R.id.setting_laboratory, R.id.setting_check_update
+            R.id.setting_laboratory, R.id.setting_check_update, R.id.setting_feedback
         ).forEach { id -> view.findViewById<View>(id).setOnClickListener(::onClick) }
         refresh()
     }
@@ -85,9 +85,15 @@ class SettingFragment : Fragment() {
             }
             R.id.setting_laboratory -> startActivity(Intent(requireContext(), LaboratoryActivity::class.java))
             R.id.setting_check_update -> try {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ST-Jie-Ge")))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ST-Jie-Ge/Android-FTP-Server")))
             } catch (error: Exception) {
                 Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
+            }
+            R.id.setting_feedback -> try {
+                val qqUri = Uri.parse("mqqapi://card/show_pslcard?src_type=internal&version=1&uin=983086628")
+                startActivity(Intent(Intent.ACTION_VIEW, qqUri))
+            } catch (error: Exception) {
+                Toast.makeText(requireContext(), R.string.feedback_qq_unavailable, Toast.LENGTH_SHORT).show()
             }
         }
     }
