@@ -20,6 +20,11 @@
     <string name="setting_doze_title">加入 Doze 白名单</string>
     <string name="setting_watchdog_title">自动从异常恢复</string>
     <string name="setting_shizuku_operation_failed">Shizuku 操作失败：%1$s</string>
+    <string name="setting_socket_buffer_request">申请更大缓存区</string>
+    <string name="setting_socket_buffer_request_att">TCP 数据连接缓存请求值，实际由系统决定；并发时占用更多内存</string>
+    <string name="setting_socket_buffer_system_default">系统自动</string>
+    <string name="setting_socket_buffer_choice_title">申请更大缓存区</string>
+    <string name="setting_socket_buffer_request_applied">已设置 TCP 缓存申请值：%1$s（新建数据连接生效）</string>
     <string name="setting_external_control">外部控制接口</string>
     <string name="setting_external_control_att">允许其他应用控制 FTP</string>
     <string name="setting_disable_performance_optimization">关闭性能优化</string>

@@ -44,6 +44,7 @@ import com.github.stjiege.ftpshare.filesystem.CopyExecutor;
 import com.github.stjiege.ftpshare.filesystem.MoveProgress;
 import com.github.stjiege.ftpshare.filesystem.TransferBuffer;
 import com.github.stjiege.ftpshare.filesystem.TransferSlots;
+import com.github.stjiege.ftpshare.ftpserver.data.TcpSocketBuffer;
 import com.github.stjiege.ftpshare.shizuku.ShizukuWatchdogController;
 import com.github.stjiege.ftpshare.utils.AccessibilityKeepAlive;
 import com.github.stjiege.ftpshare.utils.CommonUtils;
@@ -921,6 +922,8 @@ public class FtpService extends Service {
         // 块大小每次开传时才读，所以这里只是把持久化的档位同步进内存（进程刚起来时持有者还带着默认值）。
         TransferBuffer.configure(settings.getInt(Constants.PreferenceConsts.FTP_TRANSFER_BUFFER,
                 Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_DEFAULT));
+        TcpSocketBuffer.configure(settings.getInt(Constants.PreferenceConsts.FTP_SOCKET_BUFFER_REQUEST,
+                Constants.PreferenceConsts.FTP_SOCKET_BUFFER_SYSTEM_DEFAULT));
 
         if (destroyed || activeService != this) {
             LogManager.info("FTP服务已在启动过程中停止，取消创建服务器");

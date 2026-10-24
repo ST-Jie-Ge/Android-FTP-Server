@@ -48,6 +48,15 @@
                 <LinearLayout style="@style/SettingsTextGroup"><TextView style="@style/SettingsTitle" android:text="@string/setting_legacy_filesystem" /><com.github.stjiege.ftpshare.ui.SubtitleTextView style="@style/SettingsSubtitle" android:text="@string/setting_legacy_filesystem_att" /></LinearLayout><CheckBox android:id="@+id/lab_legacy_filesystem_cb" style="@style/SettingsCheck" />
             </RelativeLayout>
             <View style="@style/SettingsDivider" />
+            <RelativeLayout android:id="@+id/lab_socket_buffer_request" style="@style/SettingsRowBottom">
+                <LinearLayout style="@style/SettingsTextGroup">
+                    <TextView style="@style/SettingsTitle" android:text="@string/setting_socket_buffer_request" />
+                    <com.github.stjiege.ftpshare.ui.SubtitleTextView
+                        android:id="@+id/lab_socket_buffer_request_value"
+                        style="@style/SettingsSubtitle" />
+                </LinearLayout>
+                <ImageView style="@style/SettingsArrow" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

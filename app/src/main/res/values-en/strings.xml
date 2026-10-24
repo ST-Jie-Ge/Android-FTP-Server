@@ -23,6 +23,11 @@
     <string name="setting_doze_title">Add to Doze whitelist</string>
     <string name="setting_watchdog_title">Auto crash recovery</string>
     <string name="setting_shizuku_operation_failed">Shizuku operation failed: %1$s</string>
+    <string name="setting_socket_buffer_request">Request larger socket buffers</string>
+    <string name="setting_socket_buffer_request_att">TCP data-socket buffer request; the system decides the actual size and larger values use more memory under concurrency</string>
+    <string name="setting_socket_buffer_system_default">System default</string>
+    <string name="setting_socket_buffer_choice_title">Request larger socket buffers</string>
+    <string name="setting_socket_buffer_request_applied">TCP buffer request set to %1$s (applies to new data connections)</string>
     <string name="setting_external_control">External control interface</string>
     <string name="setting_external_control_att">Allow other apps to control FTP</string>
     <string name="setting_disable_performance_optimization">Disable performance optimization</string>

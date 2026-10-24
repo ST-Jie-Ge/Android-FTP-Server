@@ -17,6 +17,8 @@ import android.widget.Toast
 import com.github.stjiege.ftpshare.Constants
 import com.github.stjiege.ftpshare.R
 import com.github.stjiege.ftpshare.services.FtpService
+import com.github.stjiege.ftpshare.ftpserver.data.TcpSocketBuffer
+import com.github.stjiege.ftpshare.ui.SegmentedChoiceDialog
 import com.github.stjiege.ftpshare.shizuku.IShizukuCommandService
 import com.github.stjiege.ftpshare.shizuku.ShizukuCommandService
 import com.github.stjiege.ftpshare.shizuku.ShizukuWatchdogController
@@ -42,6 +44,7 @@ class LaboratoryActivity : BaseActivity(), View.OnClickListener {
     private lateinit var chacha20: CheckBox
     private lateinit var newFilesystem: CheckBox
     private lateinit var watchdogValue: TextView
+    private lateinit var socketBufferValue: TextView
     private var userService: IShizukuCommandService? = null
     private var bound = false
     private var connecting = false
@@ -122,6 +125,7 @@ class LaboratoryActivity : BaseActivity(), View.OnClickListener {
         chacha20 = findViewById(R.id.lab_chacha20_cb)
         newFilesystem = findViewById(R.id.lab_legacy_filesystem_cb)
         watchdogValue = findViewById(R.id.lab_shizuku_watchdog_value)
+        socketBufferValue = findViewById(R.id.lab_socket_buffer_request_value)
         findViewById<View>(R.id.lab_shizuku_access).setOnClickListener(this)
         findViewById<View>(R.id.lab_shizuku_doze).setOnClickListener(this)
         findViewById<View>(R.id.lab_shizuku_watchdog).setOnClickListener(this)
@@ -130,6 +134,7 @@ class LaboratoryActivity : BaseActivity(), View.OnClickListener {
         findViewById<View>(R.id.lab_desktop_clock).setOnClickListener(this)
         findViewById<View>(R.id.lab_chacha20).setOnClickListener(this)
         findViewById<View>(R.id.lab_legacy_filesystem).setOnClickListener(this)
+        findViewById<View>(R.id.lab_socket_buffer_request).setOnClickListener(this)
         findViewById<View>(R.id.lab_open_clock).setOnClickListener(this)
         try { Shizuku.addRequestPermissionResultListener(permissionListener) } catch (error: Exception) { LogManager.warning("无法注册 Shizuku 授权回调: ${error.javaClass.simpleName}") }
         refresh()
@@ -176,6 +181,7 @@ class LaboratoryActivity : BaseActivity(), View.OnClickListener {
             R.id.lab_desktop_clock -> toggleDesktopClock()
             R.id.lab_chacha20 -> toggleChaCha20()
             R.id.lab_legacy_filesystem -> togglePerformanceMode()
+            R.id.lab_socket_buffer_request -> showSocketBufferDialog()
             R.id.lab_open_clock -> startActivity(Intent(this, ClockActivity::class.java))
         }
     }
@@ -222,6 +228,9 @@ class LaboratoryActivity : BaseActivity(), View.OnClickListener {
         newFilesystem.isChecked = settings.getBoolean(Constants.PreferenceConsts.NEW_FILESYSTEM_ENABLED, Constants.PreferenceConsts.NEW_FILESYSTEM_ENABLED_DEFAULT)
                 && settings.getBoolean(Constants.PreferenceConsts.NEW_COMMAND_ROUTER_ENABLED, Constants.PreferenceConsts.NEW_COMMAND_ROUTER_ENABLED_DEFAULT)
                 && !settings.getBoolean(Constants.PreferenceConsts.USE_LEGACY_DATA_CONNECTION, Constants.PreferenceConsts.USE_LEGACY_DATA_CONNECTION_DEFAULT)
+        val socketBuffer = socketBufferRequest()
+        socketBufferValue.text = socketBufferLabel(socketBuffer)
+        TcpSocketBuffer.configure(socketBuffer)
         // 时钟调试入口只在开启时钟样式后才出现：没开时钟时它没有意义。
         val clockVisibility = if (desktopClock.isChecked) View.VISIBLE else View.GONE
         findViewById<View>(R.id.lab_open_clock).visibility = clockVisibility
@@ -365,6 +374,43 @@ class LaboratoryActivity : BaseActivity(), View.OnClickListener {
         }
         newFilesystem.isChecked = enabled
         LogManager.info("性能优先模式已${if (enabled) "启用" else "关闭"}（重启后新的Apache调度才会生效）")
+    }
+
+    private fun socketBufferRequest(): Int = settings.getInt(
+        Constants.PreferenceConsts.FTP_SOCKET_BUFFER_REQUEST,
+        Constants.PreferenceConsts.FTP_SOCKET_BUFFER_SYSTEM_DEFAULT
+    ).takeIf {
+        it == Constants.PreferenceConsts.FTP_SOCKET_BUFFER_4M ||
+            it == Constants.PreferenceConsts.FTP_SOCKET_BUFFER_8M ||
+            it == Constants.PreferenceConsts.FTP_SOCKET_BUFFER_16M
+    } ?: Constants.PreferenceConsts.FTP_SOCKET_BUFFER_SYSTEM_DEFAULT
+
+    private fun socketBufferLabel(bytes: Int): String = when (bytes) {
+        Constants.PreferenceConsts.FTP_SOCKET_BUFFER_4M -> "4 MB"
+        Constants.PreferenceConsts.FTP_SOCKET_BUFFER_8M -> "8 MB"
+        Constants.PreferenceConsts.FTP_SOCKET_BUFFER_16M -> "16 MB"
+        else -> getString(R.string.setting_socket_buffer_system_default)
+    }
+
+    private fun showSocketBufferDialog() {
+        val values = intArrayOf(
+            Constants.PreferenceConsts.FTP_SOCKET_BUFFER_SYSTEM_DEFAULT,
+            Constants.PreferenceConsts.FTP_SOCKET_BUFFER_4M,
+            Constants.PreferenceConsts.FTP_SOCKET_BUFFER_8M,
+            Constants.PreferenceConsts.FTP_SOCKET_BUFFER_16M
+        )
+        val labels = arrayOf(
+            getString(R.string.setting_socket_buffer_system_default), "4 MB", "8 MB", "16 MB"
+        )
+        val current = socketBufferRequest()
+        val checked = values.indexOf(current)
+        SegmentedChoiceDialog.show(this, R.string.setting_socket_buffer_choice_title, labels, checked) { which ->
+            val selected = values[which]
+            settings.edit().putInt(Constants.PreferenceConsts.FTP_SOCKET_BUFFER_REQUEST, selected).apply()
+            TcpSocketBuffer.configure(selected)
+            socketBufferValue.text = labels[which]
+            LogManager.info(getString(R.string.setting_socket_buffer_request_applied, labels[which]))
+        }
     }
 
     private fun toggleDesktopClock() {

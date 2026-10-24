@@ -80,9 +80,10 @@ public final class DataConnectionManager implements ServerDataConnectionFactory 
                 activeFactory.connect(configuration, endpoint, peer, controlLocal, this::publish);
             }
             checkCancelled();
+            if (passiveLease != null) TcpSocketBuffer.applyAccepted(socket);
             int timeout = configuration.getIdleTime() * 1000;
             socket.setSoTimeout(timeout);
-            // Leave SO_SNDBUF/SO_RCVBUF to kernel TCP autotuning.
+            // Optional SO_RCVBUF/SO_SNDBUF requests were applied at bind/connect/accept.
             socket.setTcpNoDelay(true);
             if (secure) tlsFactory.secure(socket, sslConfiguration(), timeout, this::publish);
             checkCancelled();

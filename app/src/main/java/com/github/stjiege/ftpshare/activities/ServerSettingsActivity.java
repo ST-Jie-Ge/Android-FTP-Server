@@ -364,24 +364,26 @@ public class ServerSettingsActivity extends BaseActivity implements View.OnClick
     private int transferBuffer() {
         int stored = settings.getInt(Constants.PreferenceConsts.FTP_TRANSFER_BUFFER,
                 Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_DEFAULT);
+        if (stored == Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_TINY) {
+            return Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_TINY;
+        }
         return stored == Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_LARGE
                 ? Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_LARGE
                 : Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_SMALL;
     }
 
-    /**
-     * 块大小在每次开传前才读一次，改档不会影响正在飞的传输，因此**不要求停止服务**
-     * ——与上面几个必须停服才能改的参数不同。只有 64 KB / 256 KB 两档，用分块按钮。
-     */
+    /** 块大小在每次开传前才读取；改档不影响正在传输的文件，也不要求停止服务。 */
     private void showTransferBufferDialog() {
-        final int[] values = {Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_SMALL,
+        final int[] values = {Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_TINY,
+                Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_SMALL,
                 Constants.PreferenceConsts.FTP_TRANSFER_BUFFER_LARGE};
         int current = transferBuffer();
         CharSequence[] items = {
                 getString(R.string.item_transfer_buffer_value, values[0] / 1024),
-                getString(R.string.item_transfer_buffer_value, values[1] / 1024)};
+                getString(R.string.item_transfer_buffer_value, values[1] / 1024),
+                getString(R.string.item_transfer_buffer_value, values[2] / 1024)};
         SegmentedChoiceDialog.show(this, R.string.item_transfer_buffer, items,
-                current == values[1] ? 1 : 0, which -> {
+                current == values[0] ? 0 : current == values[1] ? 1 : 2, which -> {
                     int value = values[which];
                     settings.edit().putInt(Constants.PreferenceConsts.FTP_TRANSFER_BUFFER, value).apply();
                     com.github.stjiege.ftpshare.filesystem.TransferBuffer.configure(value);

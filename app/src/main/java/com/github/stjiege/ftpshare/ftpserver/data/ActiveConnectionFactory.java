@@ -23,6 +23,7 @@ public final class ActiveConnectionFactory {
         Socket socket = new Socket();
         try {
             owner.publish(socket); // ABOR can close the socket even while connect is blocked.
+            TcpSocketBuffer.applyBeforeConnect(socket);
             socket.setReuseAddress(true);
             socket.setTcpNoDelay(true);
             socket.bind(new InetSocketAddress(local, configuration.getActiveLocalPort()));

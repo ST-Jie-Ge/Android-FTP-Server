@@ -234,7 +234,7 @@ public class Constants {
         public static final int FTP_TRANSFER_SLOTS_MIN = 4;
         public static final int FTP_TRANSFER_SLOTS_MAX = 10;
         /**
-         * 单次 read/write 的传输块大小（字节）。只提供 64 KB / 256 KB 两档，
+         * 单次 read/write 的传输块大小（字节）。提供 32 KB / 64 KB / 256 KB 三档，
          * 在 FTP 主界面切换；改完对**下一次**传输生效，正在飞的传输不受影响，
          * 所以不需要停止服务。
          *
@@ -244,9 +244,17 @@ public class Constants {
          * 实际值由 TransferBuffer 持有，IODataConnection.transfer() 每次开传前读一次。
          */
         public static final String FTP_TRANSFER_BUFFER = "ftp_transfer_buffer";
+        public static final int FTP_TRANSFER_BUFFER_TINY = 32 * 1024;
         public static final int FTP_TRANSFER_BUFFER_SMALL = 64 * 1024;
         public static final int FTP_TRANSFER_BUFFER_LARGE = 256 * 1024;
         public static final int FTP_TRANSFER_BUFFER_DEFAULT = FTP_TRANSFER_BUFFER_SMALL;
+
+        /** TCP 数据连接 SO_RCVBUF/SO_SNDBUF 申请值；0 保持系统默认及自动调节。 */
+        public static final String FTP_SOCKET_BUFFER_REQUEST = "ftp_socket_buffer_request";
+        public static final int FTP_SOCKET_BUFFER_SYSTEM_DEFAULT = 0;
+        public static final int FTP_SOCKET_BUFFER_4M = 4 * 1024 * 1024;
+        public static final int FTP_SOCKET_BUFFER_8M = 8 * 1024 * 1024;
+        public static final int FTP_SOCKET_BUFFER_16M = 16 * 1024 * 1024;
         /**
          * int value
          */

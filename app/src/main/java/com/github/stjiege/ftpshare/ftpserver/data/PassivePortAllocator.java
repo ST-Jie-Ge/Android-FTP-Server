@@ -21,6 +21,7 @@ public final class PassivePortAllocator {
             socket = new ServerSocket();
             socket.setReuseAddress(true);
             socket.setSoTimeout(configuration.getIdleTime() * 1000);
+            TcpSocketBuffer.applyBeforeBind(socket);
             socket.bind(new InetSocketAddress(address, port));
             return new Lease(socket, port, configuration);
         } catch (IOException | RuntimeException error) {

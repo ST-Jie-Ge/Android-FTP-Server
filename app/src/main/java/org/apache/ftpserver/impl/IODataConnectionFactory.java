@@ -28,6 +28,7 @@ import java.net.SocketAddress;
 import java.net.UnknownHostException;
 
 import com.github.stjiege.ftpshare.utils.LogManager;
+import com.github.stjiege.ftpshare.ftpserver.data.TcpSocketBuffer;
 
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
@@ -379,7 +380,8 @@ public class IODataConnectionFactory implements ServerDataConnectionFactory {
                     Socket plainSocket = new Socket();
                     dataSoc = plainSocket;
                     plainSocket.setReuseAddress(true);
-                    // 在 connect() 之前设缓冲区：TCP 窗口大小在三次握手时协商，握手直接带上 256 KB 窗口。
+                    // 缓冲区请求须在 connect 前应用；具体大小由系统决定。
+                    TcpSocketBuffer.applyBeforeConnect(plainSocket);
                     applyDataSocketOptions(plainSocket);
                     LOG.debug("Binding active data connection to {}", localSocketAddress);
                     plainSocket.bind(localSocketAddress);
@@ -400,9 +402,8 @@ public class IODataConnectionFactory implements ServerDataConnectionFactory {
                     dataSoc = new Socket();
 
                     dataSoc.setReuseAddress(true);
-                    // 在 connect() 之前设缓冲区：TCP 窗口大小在三次握手时协商，
-                    // 连接建立后再改 SO_RCVBUF/SO_SNDBUF 只能影响窗口扩展（window scaling），
-                    // 首轮通告窗口仍是默认值。主动模式在此处设置可让握手直接带上 256 KB 窗口。
+                    // 缓冲区请求须在 connect 前应用；具体大小由系统决定。
+                    TcpSocketBuffer.applyBeforeConnect(dataSoc);
                     applyDataSocketOptions(dataSoc);
 
                     LOG.debug("Binding active data connection to {}", localSocketAddress);
@@ -436,6 +437,7 @@ public class IODataConnectionFactory implements ServerDataConnectionFactory {
                     }
                     Socket serverSocket = servSoc.accept();
                     logAcceptWait(setupStart);
+                    TcpSocketBuffer.applyAccepted(serverSocket);
                     // Own the accepted socket before TLS wrapping: provider failures must
                     // reach closeDataConnection(), and ABOR must be able to interrupt it.
                     dataSoc = serverSocket;
@@ -473,6 +475,7 @@ public class IODataConnectionFactory implements ServerDataConnectionFactory {
                     }
                     dataSoc = servSoc.accept();
                     logAcceptWait(setupStart);
+                    TcpSocketBuffer.applyAccepted(dataSoc);
                 }
                 
                 if (dataConfig.isPassiveIpCheck()) {
@@ -508,8 +511,7 @@ public class IODataConnectionFactory implements ServerDataConnectionFactory {
         dataSoc.setSoTimeout(dataConfig.getIdleTime() * 1000);
 
         // 统一兜底：主动模式在上面 connect() 前已设过，被动模式则在此处补上
-        // TCP_NODELAY（监听 socket 不会把该选项传给 accept() 出来的连接，
-        // 而缓冲区已由 newServerSocket 继承过来了）。重复设置是幂等的。
+        // TCP_NODELAY；缓冲区请求已在 bind/connect/accept 的合适时机应用。
         applyDataSocketOptions(dataSoc);
 
         // Make sure we initiate the SSL handshake, or we'll
@@ -571,10 +573,8 @@ public class IODataConnectionFactory implements ServerDataConnectionFactory {
     }
 
     /**
-     * Leave send/receive buffer sizing to the kernel, including TCP autotuning.
-     * Explicit SO_SNDBUF/SO_RCVBUF requests lock automatic sizing on Linux, even
-     * when the requested size exceeds the initial default. Do not set a fixed floor.
      * TCP_NODELAY helps small replies; it does not guarantee faster bulk transfers.
+     * Optional buffer requests are handled separately before bind/connect or on accept.
      * Option failures are logged and do not fail the transfer.
      */
     private void applyDataSocketOptions(Socket socket) {
@@ -655,7 +655,8 @@ public class IODataConnectionFactory implements ServerDataConnectionFactory {
      * FTP 被动每次连接的四元组（客户端 IP + 临时端口）不同，加上 TCP 随机序列号保护，串扰
      * 风险可忽略——这是 nginx / vsftpd 等高性能服务端的标准做法。
      *
-     * Receive buffer size is inherited from kernel defaults; do not lock autotuning.
+     * An optional receive-buffer request is applied before bind so the listener and
+     * accepted passive sockets can advertise the requested window from connection setup.
      */
     private ServerSocket newServerSocket(InetAddress address, int port)
             throws IOException {
@@ -663,6 +664,7 @@ public class IODataConnectionFactory implements ServerDataConnectionFactory {
         try {
             socket.setReuseAddress(true);
 
+            TcpSocketBuffer.applyBeforeBind(socket);
             socket.bind(new InetSocketAddress(address, port));
             return socket;
         } catch (IOException | RuntimeException error) {
