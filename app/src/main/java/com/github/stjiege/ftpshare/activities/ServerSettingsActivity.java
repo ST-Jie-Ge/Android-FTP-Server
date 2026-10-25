@@ -429,7 +429,7 @@ public class ServerSettingsActivity extends BaseActivity implements View.OnClick
     }
 
     /**
-     * 编码方式：UTF-8 / GBK 二选一。会话的字符集是在连接建立时读的，运行中切换会让已连接的
+     * 编码方式：自适应 / UTF-8 / GBK。会话的字符集是在连接建立时读的，运行中切换会让已连接的
      * 客户端与半截命令行对不上号，因此要求服务完全停止——与原先在「实验功能」里的校验一致。
      */
     private void showCharsetDialog() {
@@ -437,20 +437,24 @@ public class ServerSettingsActivity extends BaseActivity implements View.OnClick
             Snackbar.make(root, R.string.attention_ftp_must_be_fully_stopped, Snackbar.LENGTH_LONG).show();
             return;
         }
-        String[] values = {Constants.Charset.CHAR_UTF, Constants.Charset.CHAR_GBK};
-        String[] items = {getString(R.string.item_charset_utf), getString(R.string.item_charset_gbk)};
+        String[] values = {Constants.Charset.CHARSET_AUTO, Constants.Charset.CHAR_UTF,
+                Constants.Charset.CHAR_GBK};
+        CharSequence[] items = {getString(R.string.item_charset_auto),
+                getString(R.string.item_charset_utf), getString(R.string.item_charset_gbk)};
         String current = settings.getString(Constants.PreferenceConsts.CHARSET_TYPE,
                 Constants.PreferenceConsts.CHARSET_TYPE_DEFAULT);
-        new RadioSelectionDialog<String>(this, getString(R.string.item_charset), items, values, current,
-                (selection, value) -> {
-                    // 弹窗打开期间服务可能又被启动，落盘前再查一次。
-                    if (!FtpService.isFTPServiceFullyStopped()) {
-                        Snackbar.make(root, R.string.attention_ftp_must_be_fully_stopped,
-                                Snackbar.LENGTH_LONG).show();
-                        return;
-                    }
-                    settings.edit().putString(Constants.PreferenceConsts.CHARSET_TYPE, value).apply();
-                    tvCharset.setText(CommonUtils.getDisplayCharsetValue(ServerSettingsActivity.this));
-                }).show();
+        int checked = values[0].equals(current) ? 0 : values[1].equals(current) ? 1
+                : values[2].equals(current) ? 2 : -1;
+        SegmentedChoiceDialog.show(this, R.string.item_charset, items, checked, which -> {
+            String value = values[which];
+            // 弹窗打开期间服务可能又被启动，落盘前再查一次。
+            if (!FtpService.isFTPServiceFullyStopped()) {
+                Snackbar.make(root, R.string.attention_ftp_must_be_fully_stopped,
+                        Snackbar.LENGTH_LONG).show();
+                return;
+            }
+            settings.edit().putString(Constants.PreferenceConsts.CHARSET_TYPE, value).apply();
+            tvCharset.setText(CommonUtils.getDisplayCharsetValue(ServerSettingsActivity.this));
+        });
     }
 }

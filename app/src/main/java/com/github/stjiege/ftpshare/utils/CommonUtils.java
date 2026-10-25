@@ -37,13 +37,18 @@ public class CommonUtils {
     /**
      * 编码展示值
      *
-     * @return GBK(简体中文)或者UTF-8(默认)
+     * @return 自适应、UTF-8 或 GBK
      */
     public static String getDisplayCharsetValue(@NonNull Context context) {
-        return context.getResources().getString(
-                Constants.Charset.CHAR_GBK.equals(getSettingSharedPreferences(context).getString(Constants.PreferenceConsts.CHARSET_TYPE, Constants.PreferenceConsts.CHARSET_TYPE_DEFAULT)) ?
-                        R.string.item_charset_gbk : R.string.item_charset_utf
-        );
+        String mode = getSettingSharedPreferences(context).getString(
+                Constants.PreferenceConsts.CHARSET_TYPE,
+                Constants.PreferenceConsts.CHARSET_TYPE_DEFAULT);
+        int label = Constants.Charset.CHAR_UTF.equals(mode)
+                ? R.string.item_charset_utf
+                : Constants.Charset.CHAR_GBK.equals(mode)
+                        ? R.string.item_charset_gbk
+                        : R.string.item_charset_auto;
+        return context.getResources().getString(label);
     }
 
     /**
@@ -277,4 +282,3 @@ public class CommonUtils {
         resources.updateConfiguration(config, metrics);
     }
 }
-

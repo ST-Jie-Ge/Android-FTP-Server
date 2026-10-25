@@ -131,6 +131,7 @@ public class Constants {
         /** Allows other apps that declare CONTROL_FTP permission to send start/stop broadcasts. */
         public static final String EXTERNAL_CONTROL_ENABLED = "external_control_enabled";
         public static final boolean EXTERNAL_CONTROL_ENABLED_DEFAULT = false;
+        public static final String FTP_ATTACK_LOCKDOWN = "ftp_attack_lockdown";
         /** Applies to complete-storage virtual roots. Kept on by default to avoid exposing app data. */
         public static final String RESTRICT_ANDROID_DATA = "restrict_android_data";
         public static final boolean RESTRICT_ANDROID_DATA_DEFAULT = true;
@@ -146,8 +147,10 @@ public class Constants {
         /** IP whitelist: when enabled, only addresses in the whitelist may connect to the FTP server. */
         public static final String IP_WHITELIST_ENABLED = "ip_whitelist_enabled";
         public static final boolean IP_WHITELIST_ENABLED_DEFAULT = false;
-        /** Stored as a StringSet of "value|note" strings, e.g. "192.168.1.5|Home PC" or "192.168.1.0/24|". */
+        /** Stored as a StringSet of "value|note|id" strings; the id preserves distinct empty rows. */
         public static final String IP_WHITELIST_ENTRIES = "ip_whitelist_entries";
+        /** One-time bootstrap marker for fresh installs; upgrades must not seed whitelist entries. */
+        public static final String IP_WHITELIST_INITIALIZED = "ip_whitelist_initialized";
         /** Default loopback entry so local access keeps working when the whitelist is first enabled. */
         public static final String[] IP_WHITELIST_DEFAULT_ENTRIES = {"127.0.0.1|Local device"};
         /** Desk clock: shows the WebView clock after the app idles on the FTP page. */
@@ -174,9 +177,10 @@ public class Constants {
         public static final int PORT_NUMBER_DEFAULT = 5555;
         /**
          * this stands for a string value
-         */
+        */
         public static final String CHARSET_TYPE = "charset_type";
-        public static final String CHARSET_TYPE_DEFAULT = "UTF-8";
+        /** Adaptive mode defaults to GBK but permits a client to negotiate UTF-8. */
+        public static final String CHARSET_TYPE_DEFAULT = "AUTO";
         /**
          * 匿名登录上限。注意匿名登录要连过两道检查：先查本值，再查 [MAX_LOGIN_NUM]，
          * 实际生效的是两者中较小的那个。默认 4 —— 匿名没有任何身份约束，给太高的额度
@@ -307,6 +311,7 @@ public class Constants {
     }
 
     public static class Charset {
+        public static final String CHARSET_AUTO = "AUTO";
         public static final String CHAR_UTF = "UTF-8";
         public static final String CHAR_GBK = "GBK";
     }

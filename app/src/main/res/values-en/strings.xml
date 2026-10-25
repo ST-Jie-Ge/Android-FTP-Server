@@ -73,6 +73,7 @@
     <string name="attention_ftp_must_be_fully_stopped">Stop FTP completely before changing this setting</string>
     <string name="item_charset_utf">UTF-8</string>
     <string name="item_charset_gbk">GBK(Simplified Chinese)</string>
+    <string name="item_charset_auto">Automatic</string>
     <string name="setting_app_permissions">App permissions</string>
     <string name="item_ftp_addresses">My IP addresses</string>
     <string name="item_account_settings">Account settings</string>
@@ -206,6 +207,11 @@
     <string name="ip_whitelist_note_label">Note (optional)</string>
     <string name="ip_whitelist_invalid_ipv4">Enter a valid IPv4 address</string>
     <string name="ip_whitelist_invalid_prefix">Prefix length must be an integer from 1 to 32</string>
+    <string name="ip_whitelist_invalid_input">Invalid input</string>
+    <string name="ip_whitelist_delete_title">Delete whitelist entry?</string>
+    <string name="ip_whitelist_delete_active_message">Delete this whitelist entry?\n%1$s\n\nAfter deletion, this address or network will no longer be allowed to connect.</string>
+    <string name="ip_whitelist_delete_disabled_message">Delete this unused empty entry?\n%1$s</string>
+    <string name="ip_whitelist_not_effective">Invalid address; this entry is not effective</string>
     <string name="ip_whitelist_invalid_free">A free range may only differ in the last number</string>
     <string name="ip_whitelist_disabled">Not enabled</string>
     <string name="ip_whitelist_disabled_action">Set an address to enable it</string>

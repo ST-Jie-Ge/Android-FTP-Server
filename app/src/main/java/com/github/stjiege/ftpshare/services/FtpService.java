@@ -458,7 +458,7 @@ public class FtpService extends Service {
     /**
      * check if have ftp service instance and kill it
      */
-    public static void stopService() {
+    public static boolean stopService() {
         try {
             // 标记手动停止：服务真正停稳后由 onDestroy 的 stop 任务触发清扫。
             com.github.stjiege.ftpshare.filesystem.UploadLeftoverSweep.request();
@@ -471,8 +471,10 @@ public class FtpService extends Service {
             if (service != null) service.stopExpectedly();
             // 显式停止必须落盘：否则下一个自愈周期会把服务重新拉起来。
             setExpectedRunning(service != null ? service : MyApplication.getGlobalBaseContext(), false);
+            return true;
         } catch (Exception e) {
             LogManager.error("请求停止FTP服务失败", e);
+            return false;
         }
     }
 
@@ -632,28 +634,40 @@ public class FtpService extends Service {
      * non-ASCII filenames and made files unreachable from clients. Changes to the charset
      * setting therefore take effect on the next server start.
      */
-    private static volatile String activeFtpCharset;
+    private static volatile String activeFtpCharsetMode;
 
     /**
      * IoSession attribute holding a per-session charset override.
      *
-     * <p>The global setting is for clients with no UTF-8 support at all (legacy Windows
-     * Explorer and old domestic clients that speak GBK). Modern clients always send
-     * {@code OPTS UTF8} first and then speak UTF-8 no matter what the server answered —
-     * replying 502 did not make them stop, it only left the server decoding UTF-8 bytes
-     * as GBK, which garbled Chinese filenames and turned every path into a 550.
-     * So the override is applied per session: one connection, one charset.</p>
+     * <p>In adaptive mode the default is GBK and {@code OPTS UTF8} switches just that session
+     * to UTF-8. In forced UTF-8 or GBK mode, the server keeps the selected charset for every
+     * session and rejects attempts to switch away from it.</p>
      */
     private static final String ATTR_SESSION_CHARSET = "ftpshare.session.charset";
 
-    public static String getActiveFtpCharset() {
-        String charset = activeFtpCharset;
-        if (charset == null) {
-            charset = MyApplication.getGlobalBaseContext()
+    public static String getActiveFtpCharsetMode() {
+        String mode = activeFtpCharsetMode;
+        if (mode == null) {
+            mode = MyApplication.getGlobalBaseContext()
                     .getSharedPreferences(Constants.PreferenceConsts.FILE_NAME, Context.MODE_PRIVATE)
-                    .getString(Constants.PreferenceConsts.CHARSET_TYPE, Constants.PreferenceConsts.CHARSET_TYPE_DEFAULT);
+                    .getString(Constants.PreferenceConsts.CHARSET_TYPE,
+                            Constants.PreferenceConsts.CHARSET_TYPE_DEFAULT);
         }
-        return charset;
+        if (Constants.Charset.CHAR_UTF.equals(mode) || Constants.Charset.CHAR_GBK.equals(mode)) {
+            return mode;
+        }
+        return Constants.Charset.CHARSET_AUTO;
+    }
+
+    /** The configured charset used when a session has no negotiated override. */
+    public static String getActiveFtpCharset() {
+        return Constants.Charset.CHAR_UTF.equals(getActiveFtpCharsetMode())
+                ? Constants.Charset.CHAR_UTF : Constants.Charset.CHAR_GBK;
+    }
+
+    /** UTF-8 is advertised in adaptive mode and when it is the forced server charset. */
+    public static boolean isUtf8FeatureEnabled() {
+        return !Constants.Charset.CHAR_GBK.equals(getActiveFtpCharsetMode());
     }
 
     /**
@@ -775,7 +789,7 @@ public class FtpService extends Service {
         FtpServerFactory factory = new FtpServerFactory();
         factory.getFtplets().put("audit", new FtpLogFtplet());
         // 在监听器（及其编解码工厂）构建之前，先冻结协议字符集。
-        activeFtpCharset = settings.getString(Constants.PreferenceConsts.CHARSET_TYPE,
+        activeFtpCharsetMode = settings.getString(Constants.PreferenceConsts.CHARSET_TYPE,
                 Constants.PreferenceConsts.CHARSET_TYPE_DEFAULT);
         Set<String> fullStorageAccounts = AccountRegistrar.registerAccounts(factory, list, this, settings);
 

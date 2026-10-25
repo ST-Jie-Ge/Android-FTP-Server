@@ -210,6 +210,11 @@
     <string name="ip_whitelist_invalid_ipv4">请输入有效的 IPv4 地址</string>
     <string name="ip_whitelist_invalid_prefix">网段前缀需为 1–32 的整数</string>
     <string name="ip_whitelist_invalid_free">自由范围仅允许最后一个数字不同</string>
+    <string name="ip_whitelist_invalid_input">非法的输入内容</string>
+    <string name="ip_whitelist_delete_title">删除白名单项？</string>
+    <string name="ip_whitelist_delete_active_message">确定删除以下白名单项吗？\n%1$s\n\n删除后，此地址或网段将不再允许连接。</string>
+    <string name="ip_whitelist_delete_disabled_message">确定删除以下未启用的空白项吗？\n%1$s</string>
+    <string name="ip_whitelist_not_effective">地址格式无效，此项不生效</string>
     <string name="ip_whitelist_disabled">未启用</string>
     <string name="ip_whitelist_disabled_action">点击设置地址后启用</string>
     <string name="ip_whitelist_address_count">共 %1$d 个地址</string>

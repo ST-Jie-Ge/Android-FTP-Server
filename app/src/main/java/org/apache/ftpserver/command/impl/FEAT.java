@@ -24,10 +24,11 @@ import org.apache.ftpserver.ftplet.FtpException;
 import org.apache.ftpserver.ftplet.FtpRequest;
 import org.apache.ftpserver.impl.FtpIoSession;
 import org.apache.ftpserver.impl.FtpServerContext;
+import com.github.stjiege.ftpshare.services.FtpService;
 
 /**
- * Vendored from Apache FtpServer 1.1.1 with one addition: advertise {@code HASH SHA-256}
- * so clients that support the HASH extension can request file checksums.
+ * Vendored from Apache FtpServer 1.1.1 with the {@code HASH SHA-256} extension and
+ * charset-aware {@code UTF8} advertisement.
  *
  * <p>The feature list is kept identical to the upstream resource bundle
  * {@code org/apache/ftpserver/message/FtpStatus.properties} key {@code 211.FEAT},
@@ -49,7 +50,9 @@ public class FEAT extends AbstractCommand {
         sb.append(" AUTH SSL\n");
         sb.append(" AUTH TLS\n");
         sb.append(" MODE Z\n");
-        sb.append(" UTF8\n");
+        if (FtpService.isUtf8FeatureEnabled()) {
+            sb.append(" UTF8\n");
+        }
         sb.append(" TVFS\n");
         sb.append(" MFMT\n");
         sb.append(" HASH SHA-256\n");

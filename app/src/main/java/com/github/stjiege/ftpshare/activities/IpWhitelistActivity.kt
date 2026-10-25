@@ -20,17 +20,17 @@ import com.github.stjiege.ftpshare.Constants
 import com.github.stjiege.ftpshare.R
 import com.github.stjiege.ftpshare.services.FtpService
 import com.github.stjiege.ftpshare.utils.CommonUtils
+import java.util.UUID
 
 /**
  * Manages the IP whitelist.
  *
  * A row is created disabled and empty: it holds no address at all, so it never matches a client and
- * is never written to storage. It becomes active only once a valid IPv4 host, an IPv4 CIDR block or
+ * is inert. It becomes active only once a valid IPv4 host, an IPv4 CIDR block or
  * an IPv4 free range has been entered. There is no manual on/off switch - the only thing the user
  * can do with an active row is change its address or delete it.
  *
- * An entry is stored as "value|note"; the optional note replaces the address in the list so rows
- * stay recognisable. Values: "192.168.1.5", "192.168.1.0/24" or "192.168.1.1-192.168.1.5".
+ * An entry is stored as "value|note|id"; the id ensures identical empty rows remain distinct.
  */
 class IpWhitelistActivity : BaseActivity() {
     private lateinit var listView: ListView
@@ -38,8 +38,8 @@ class IpWhitelistActivity : BaseActivity() {
     private val entries = ArrayList<Entry>()
 
     /** value is "" while the row is disabled and holds no address. */
-    private data class Entry(var value: String, var note: String) {
-        /** Without an address a row is inert: it never allows a client and is never persisted. */
+    private data class Entry(var value: String, var note: String, val id: String = UUID.randomUUID().toString()) {
+        /** Without an address a row is inert: it never allows a client. */
         val isActive: Boolean get() = value.isNotBlank()
     }
 
@@ -57,13 +57,16 @@ class IpWhitelistActivity : BaseActivity() {
 
         fun parse(raw: String): Entry {
             val separator = raw.indexOf(SEP)
-            return if (separator < 0) Entry(raw.trim(), "")
-            else Entry(raw.substring(0, separator).trim(), raw.substring(separator + 1).trim())
+            if (separator < 0) return Entry(raw.trim(), "")
+            val idSeparator = raw.indexOf(SEP, separator + 1)
+            val noteEnd = if (idSeparator < 0) raw.length else idSeparator
+            val id = if (idSeparator < 0) UUID.randomUUID().toString() else raw.substring(idSeparator + 1).trim()
+            return Entry(raw.substring(0, separator).trim(), raw.substring(separator + 1, noteEnd).trim(), id)
         }
 
         fun serialize(entry: Entry): String {
             val note = entry.note.replace("|", " ").replace("\n", " ").trim()
-            return "${entry.value}|$note"
+            return "${entry.value}|$note|${entry.id}"
         }
 
         fun typeOf(value: String): Type = when {
@@ -129,24 +132,15 @@ class IpWhitelistActivity : BaseActivity() {
         }
     }
 
-    /** Returns stored entries, seeding loopback defaults when nothing has ever been saved. */
+    /** Returns stored entries. Fresh-install defaults are initialized once by MyApplication. */
     private fun loadEntries(): List<Entry> {
         val stored = settings.getStringSet(Constants.PreferenceConsts.IP_WHITELIST_ENTRIES, null)
-        if (stored == null) {
-            val defaults = Constants.PreferenceConsts.IP_WHITELIST_DEFAULT_ENTRIES.toSet()
-            if (!FtpService.updateIpWhitelistEntries(this, defaults)) {
-                Toast.makeText(this, R.string.attention_ftp_must_be_fully_stopped, Toast.LENGTH_SHORT).show()
-                finish()
-                return emptyList()
-            }
-            return defaults.map { parse(it) }.sortedBy { it.value }
-        }
-        return stored.map { parse(it) }.sortedBy { it.value }
+        return stored.orEmpty().map { parse(it) }.sortedBy { it.value }
     }
 
-    /** Disabled rows carry no address, so they are never written back; they cannot round-trip. */
+    /** Persist all rows, including disabled ones; unique ids prevent StringSet collisions. */
     private fun saveEntries(candidate: List<Entry>): Boolean {
-        val values = candidate.filter { it.isActive }.map { serialize(it) }.toSet()
+        val values = candidate.map { serialize(it) }.toSet()
         if (FtpService.updateIpWhitelistEntries(this, values)) return true
         Toast.makeText(this, R.string.attention_ftp_must_be_fully_stopped, Toast.LENGTH_SHORT).show()
         return false
@@ -229,7 +223,8 @@ class IpWhitelistActivity : BaseActivity() {
                 buildValue(currentType(), address.text.toString().trim(),
                         end.text.toString().trim(), prefix.text.toString().trim())
             } catch (error: AddressError) {
-                Toast.makeText(this, error.messageRes, Toast.LENGTH_SHORT).show()
+                address.error = getString(R.string.ip_whitelist_invalid_input)
+                address.requestFocus()
                 return@setOnClickListener
             }
             if (entries.any { it !== entry && it.value == value }) {
@@ -250,6 +245,9 @@ class IpWhitelistActivity : BaseActivity() {
             if (type == Type.SINGLE) return rawAddress
             val length = rawPrefix.toIntOrNull()
             if (length == null || length < 1 || length > 32) throw AddressError(R.string.ip_whitelist_invalid_prefix)
+            if (type == Type.RANGE && !isNetworkAddress(Ipv4.octets(rawAddress)!!, length)) {
+                throw AddressError(R.string.ip_whitelist_invalid_input)
+            }
             return "$rawAddress/$length"
         }
         val from = Ipv4.octets(rawAddress) ?: throw AddressError(R.string.ip_whitelist_invalid_ipv4)
@@ -265,6 +263,39 @@ class IpWhitelistActivity : BaseActivity() {
         return "$head.$low-$head.$high"
     }
 
+    /** Stored values can predate current validation, so display malformed entries as ineffective. */
+    private fun isValidStoredValue(value: String): Boolean {
+        val dash = value.indexOf(RANGE_SEP)
+        if (dash >= 0) {
+            if (dash == 0 || dash == value.lastIndex || value.indexOf(RANGE_SEP, dash + 1) >= 0) return false
+            val from = Ipv4.octets(value.substring(0, dash).trim()) ?: return false
+            val to = Ipv4.octets(value.substring(dash + 1).trim()) ?: return false
+            return from[0] == to[0] && from[1] == to[1] && from[2] == to[2]
+        }
+        val slash = value.indexOf(CIDR_SEP)
+        if (slash >= 0) {
+            if (slash == 0 || slash == value.lastIndex || value.indexOf(CIDR_SEP, slash + 1) >= 0) return false
+            val octets = Ipv4.octets(value.substring(0, slash).trim()) ?: return false
+            val prefix = value.substring(slash + 1).trim().toIntOrNull() ?: return false
+            return prefix in 1..32 && isNetworkAddress(octets, prefix)
+        }
+        return Ipv4.isValid(value.trim())
+    }
+
+    /** CIDR entries must identify the network itself; host bits must all be zero. */
+    private fun isNetworkAddress(octets: IntArray, prefix: Int): Boolean {
+        val completeOctets = prefix / 8
+        val remainder = prefix % 8
+        var firstHostOctet = completeOctets
+        if (remainder > 0) {
+            val hostMask = (1 shl (8 - remainder)) - 1
+            if ((octets[completeOctets] and hostMask) != 0) return false
+            firstHostOctet++
+        }
+        for (index in firstHostOctet..3) if (octets[index] != 0) return false
+        return true
+    }
+
     private class AddressError(val messageRes: Int) : Exception()
 
     private fun confirmDelete(entry: Entry) {
@@ -273,9 +304,14 @@ class IpWhitelistActivity : BaseActivity() {
             entry.note.isBlank() -> entry.value
             else -> "${entry.note}\n${entry.value}"
         }
+        val message = if (entry.isActive) {
+            getString(R.string.ip_whitelist_delete_active_message, summary)
+        } else {
+            getString(R.string.ip_whitelist_delete_disabled_message, summary)
+        }
         AlertDialog.Builder(this)
-                .setMessage(summary)
-                .setTitle(R.string.activity_title_edit)
+                .setMessage(message)
+                .setTitle(R.string.ip_whitelist_delete_title)
                 .setNegativeButton(R.string.dialog_button_cancel, null)
                 .setPositiveButton(R.string.action_account_delete) { _, _ ->
                     if (!saveEntries(entries.filter { it !== entry })) return@setPositiveButton
@@ -332,6 +368,13 @@ class IpWhitelistActivity : BaseActivity() {
                 return view
             }
 
+            if (!isValidStoredValue(entry.value)) {
+                title.text = if (titled) entry.note else entry.value
+                title.setTextColor(muted)
+                sub.text = "${entry.value} · ${getString(R.string.ip_whitelist_not_effective)}"
+                icon.alpha = 0.4f
+                return view
+            }
             val label = getString(when (typeOf(entry.value)) {
                 Type.SINGLE -> R.string.ip_whitelist_type_single
                 Type.RANGE -> R.string.ip_whitelist_type_range

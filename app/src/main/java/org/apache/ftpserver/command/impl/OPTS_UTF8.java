@@ -8,21 +8,18 @@ import org.apache.ftpserver.ftplet.FtpException;
 import org.apache.ftpserver.ftplet.FtpRequest;
 import org.apache.ftpserver.impl.FtpIoSession;
 import org.apache.ftpserver.impl.FtpServerContext;
+import org.apache.ftpserver.ftplet.DefaultFtpReply;
 import org.apache.ftpserver.impl.LocalizedFtpReply;
 
 import java.io.IOException;
 import java.util.Locale;
 
 /**
- * {@code OPTS UTF8} — switches this connection to UTF-8.
+ * {@code OPTS UTF8} — switches this connection to UTF-8 in adaptive mode.
  *
- * <p>Always answers 200, whatever the server-wide charset is. The stock implementation replied
- * 502 when the server ran in GBK, but that only produces broken behaviour: FEAT advertises
- * UTF8 unconditionally (it comes from the bundled {@code FtpStatus} template), clients send
- * {@code OPTS UTF8}, and modern clients then speak UTF-8 whether the server agreed or not.
- * The 502 left the server decoding UTF-8 bytes as GBK — garbled names, or 550 on every path.
- * Accepting the command and pinning UTF-8 to this session is what those clients expect;
- * sessions that say nothing keep the configured charset, so legacy GBK clients are unaffected.</p>
+ * <p>Adaptive mode accepts the request per session; forced modes reject requests that would
+ * change the configured encoding. The session charset is shared by command decoding, replies,
+ * and directory listings.</p>
  */
 public class OPTS_UTF8 extends AbstractCommand {
     public OPTS_UTF8() {
@@ -30,10 +27,18 @@ public class OPTS_UTF8 extends AbstractCommand {
 
     public void execute(FtpIoSession session, FtpServerContext context, FtpRequest request) throws IOException, FtpException {
         session.resetState();
-        // "OPTS UTF8 OFF" is the only defined way back to the server-wide charset.
+        String mode = FtpService.getActiveFtpCharsetMode();
         String argument = request.getArgument();
         boolean disable = argument != null && argument.trim().toUpperCase(Locale.US).endsWith("OFF");
-        FtpService.setSessionCharset(session, disable ? null : Constants.PreferenceConsts.CHARSET_TYPE_DEFAULT);
+        if (Constants.Charset.CHARSET_AUTO.equals(mode)) {
+            FtpService.setSessionCharset(session, disable ? null : Constants.Charset.CHAR_UTF);
+        } else if (Constants.Charset.CHAR_UTF.equals(mode) && disable) {
+            session.write(new DefaultFtpReply(504, "UTF-8 is forced by server settings"));
+            return;
+        } else if (Constants.Charset.CHAR_GBK.equals(mode) && !disable) {
+            session.write(new DefaultFtpReply(504, "UTF-8 is disabled by server settings"));
+            return;
+        }
         session.write(LocalizedFtpReply.translate(session, request, context,
                 200, "OPTS.UTF8", (String) null));
     }

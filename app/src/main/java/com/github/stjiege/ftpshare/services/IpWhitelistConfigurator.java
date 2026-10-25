@@ -32,7 +32,16 @@ public final class IpWhitelistConfigurator {
         }
         Set<String> rawEntries = settings.getStringSet(Constants.PreferenceConsts.IP_WHITELIST_ENTRIES, null);
         if (rawEntries == null) rawEntries = java.util.Collections.emptySet();
-        RemoteIpFilter filter = new RemoteIpFilter(IpFilterType.ALLOW);
+        RemoteIpFilter filter = new RemoteIpFilter(IpFilterType.ALLOW) {
+            @Override
+            public boolean accept(org.apache.mina.core.session.IoSession session) {
+                boolean accepted = super.accept(session);
+                if (!accepted) {
+                    LogManager.warning("IP白名单拦截连接: " + session.getRemoteAddress());
+                }
+                return accepted;
+            }
+        };
         int added = 0;
         for (String entry : rawEntries) {
             try {
@@ -89,8 +98,20 @@ public final class IpWhitelistConfigurator {
                 ? Integer.parseInt(value.substring(slash + 1))
                 : 32;
         if (prefix < 1 || prefix > 32) throw new IllegalArgumentException("bad prefix: " + value);
+        if (slash >= 0 && hasHostBits(octets, prefix)) {
+            throw new IllegalArgumentException("CIDR address contains host bits: " + value);
+        }
         filter.add(new Subnet(address, prefix));
         return 1;
+    }
+
+    private static boolean hasHostBits(int[] octets, int prefix) {
+        long address = ((octets[0] & 255L) << 24)
+                | ((octets[1] & 255L) << 16)
+                | ((octets[2] & 255L) << 8)
+                | (octets[3] & 255L);
+        long hostMask = (1L << (32 - prefix)) - 1L;
+        return (address & hostMask) != 0;
     }
 
     /** 返回点分十进制 IPv4 字面量的四个字节，不是合法 IPv4 时返回 null。 */
