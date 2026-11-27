@@ -1,4 +1,4 @@
-package com.github.stjiege.ftpshare.shizuku;
+package com.stftp.g2.shizuku;
 
 interface IShizukuCommandService {
     boolean setDozeWhitelist(boolean enabled);

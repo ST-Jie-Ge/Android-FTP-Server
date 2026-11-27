@@ -1,8 +1,8 @@
-package com.github.stjiege.ftpshare.shizuku;
+package com.stftp.g2.shizuku;
 
 import android.os.Build;
 
-import com.github.stjiege.ftpshare.BuildConfig;
+import com.stftp.g2.BuildConfig;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -49,7 +49,8 @@ public final class ShizukuCommandService extends IShizukuCommandService.Stub {
      * deliberate stop can never resurrect a service the user just ended. */
     private volatile boolean everSeenRunning;
     private volatile String watchStatus = "看门狗未运行";
-    private Thread watchThread;
+    private volatile Thread watchThread;
+    private final Object commandLock = new Object();
 
     @Override public boolean setDozeWhitelist(boolean enabled) {
         return runCommand("cmd", "deviceidle", "whitelist", (enabled ? "+" : "-") + EXPECTED_PACKAGE).success;
@@ -90,8 +91,9 @@ public final class ShizukuCommandService extends IShizukuCommandService.Stub {
         try {
             // Let foreground startup settle before the first probe, preventing a false recovery.
             Thread.sleep(FIRST_PROBE_DELAY_MS);
-            while (watching) {
+            while (watching && watchThread == Thread.currentThread()) {
                 FtpState state = probeFtp();
+                if (!watching || watchThread != Thread.currentThread()) return;
                 if (state == FtpState.UNKNOWN) {
                     // A failed probe means "unknown", never "stopped": an unreadable dumpsys must
                     // not be mistaken for a dead service and burn a recovery attempt.
@@ -126,7 +128,7 @@ public final class ShizukuCommandService extends IShizukuCommandService.Stub {
                     return;
                 }
                 Thread.sleep(RECOVERY_CONFIRM_DELAY_MS);
-                if (!watching) return;
+                if (!watching || watchThread != Thread.currentThread()) return;
                 FtpState confirmed = probeFtp();
                 if (confirmed == FtpState.RUNNING) {
                     watchStatus = "看门狗正在监测 FTP 服务";
@@ -143,6 +145,7 @@ public final class ShizukuCommandService extends IShizukuCommandService.Stub {
                     watching = false;
                     return;
                 }
+                if (!watching || watchThread != Thread.currentThread() || Thread.currentThread().isInterrupted()) return;
                 recoveryCount++;
                 watchStatus = "正在恢复 FTP 服务（" + recoveryCount + "/" + MAX_RECOVERIES + "）";
                 runCommand("am", Build.VERSION.SDK_INT >= 26 ? "start-foreground-service" : "startservice",
@@ -160,10 +163,12 @@ public final class ShizukuCommandService extends IShizukuCommandService.Stub {
         } catch (Exception error) {
             // A crashed monitor must not keep reporting "watching": the caller would then refuse
             // to start a new one and the guard would stay dead forever.
-            watching = false;
-            watchStatus = "看门狗异常：" + error.getClass().getSimpleName();
+            if (watchThread == Thread.currentThread()) {
+                watching = false;
+                watchStatus = "看门狗异常：" + error.getClass().getSimpleName();
+            }
         } finally {
-            if (!watching && !watchStatus.startsWith("检测到") && !watchStatus.startsWith("看门狗已")) {
+            if (watchThread == Thread.currentThread() && !watching && !watchStatus.startsWith("检测到") && !watchStatus.startsWith("看门狗已")) {
                 watchStatus = "看门狗未运行";
             }
         }
@@ -181,7 +186,10 @@ public final class ShizukuCommandService extends IShizukuCommandService.Stub {
     }
 
     /** Runs one fixed argv command with a bounded wait and continuously drains its output. */
-    private synchronized CommandResult runCommand(String... command) {
+    private CommandResult runCommand(String... command) {
+        synchronized (commandLock) { return runCommandLocked(command); }
+    }
+    private CommandResult runCommandLocked(String... command) {
         Process process = null;
         try {
             process = new ProcessBuilder(command).redirectErrorStream(true).start();

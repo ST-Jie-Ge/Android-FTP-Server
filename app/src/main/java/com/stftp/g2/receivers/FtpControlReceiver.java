@@ -1,15 +1,15 @@
-package com.github.stjiege.ftpshare.receivers;
+package com.stftp.g2.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.github.stjiege.ftpshare.BuildConfig;
-import com.github.stjiege.ftpshare.Constants;
-import com.github.stjiege.ftpshare.services.FtpService;
-import com.github.stjiege.ftpshare.utils.CommonUtils;
-import com.github.stjiege.ftpshare.utils.LogManager;
+import com.stftp.g2.BuildConfig;
+import com.stftp.g2.Constants;
+import com.stftp.g2.services.FtpService;
+import com.stftp.g2.utils.CommonUtils;
+import com.stftp.g2.utils.LogManager;
 
 /**
  * Opt-in integration endpoint for companion and automation apps.
@@ -49,20 +49,20 @@ public final class FtpControlReceiver extends BroadcastReceiver {
         if (!CommonUtils.getSettingSharedPreferences(context).getBoolean(
                 Constants.PreferenceConsts.EXTERNAL_CONTROL_ENABLED,
                 Constants.PreferenceConsts.EXTERNAL_CONTROL_ENABLED_DEFAULT)) {
-            LogManager.warning("已拒绝外部 FTP 控制请求：接口未启用");
+            LogManager.warning("External FTP control rejected: disabled");
             respond(RESULT_REQUEST_REJECTED, STATUS_INTERFACE_DISABLED, "External control is disabled in Laboratory.");
             return;
         }
         if (ACTION_START_FTP.equals(action) && CommonUtils.getSettingSharedPreferences(context).getBoolean(
                 Constants.PreferenceConsts.FTP_ATTACK_LOCKDOWN, false)) {
-            LogManager.warning("已拒绝外部 FTP 控制请求：服务处于暴力破解特殊停服状态");
+            LogManager.warning("External FTP control rejected: security shutdown active");
             respond(RESULT_REQUEST_REJECTED, STATUS_ATTACK_LOCKDOWN, "FTP is locked down after suspected brute-force activity.");
             return;
         }
         if (ACTION_START_FTP.equals(action)) {
             try {
                 boolean accepted = FtpService.startService(context.getApplicationContext());
-                LogManager.info("外部应用请求启动 FTP" + (accepted ? "" : "，请求未接受"));
+                LogManager.info("External FTP start requested" + (accepted ? "" : "; request rejected"));
                 if (accepted) {
                     respond(RESULT_REQUEST_ACCEPTED, STATUS_ACCEPTED, "Start request accepted; startup is asynchronous.");
                 } else if (CommonUtils.getSettingSharedPreferences(context).getBoolean(
@@ -72,12 +72,12 @@ public final class FtpControlReceiver extends BroadcastReceiver {
                     respond(RESULT_REQUEST_REJECTED, STATUS_REJECTED, "FTP start request was not accepted.");
                 }
             } catch (RuntimeException error) {
-                LogManager.error("外部应用启动 FTP 失败", error);
+                LogManager.error("External FTP start failed", error);
                 respond(RESULT_REQUEST_REJECTED, STATUS_FAILED, error.getClass().getSimpleName());
             }
         } else if (ACTION_STOP_FTP.equals(action)) {
             boolean accepted = FtpService.stopService();
-            LogManager.info("外部应用请求停止 FTP" + (accepted ? "" : "，请求失败"));
+            LogManager.info("External FTP stop requested" + (accepted ? "" : "; request failed"));
             respond(accepted ? RESULT_REQUEST_ACCEPTED : RESULT_REQUEST_REJECTED,
                     accepted ? STATUS_ACCEPTED : STATUS_FAILED,
                     accepted ? "Stop request accepted; shutdown is asynchronous." : "FTP stop request failed.");
@@ -86,7 +86,7 @@ public final class FtpControlReceiver extends BroadcastReceiver {
 
     private void respond(int resultCode, String status, String message) {
         if (!isOrderedBroadcast()) {
-            LogManager.warning("外部 FTP 控制请求使用了无序广播，无法向调用方回传结果");
+            LogManager.warning("External FTP control: reply unavailable (unordered)");
             return;
         }
         Bundle result = new Bundle();

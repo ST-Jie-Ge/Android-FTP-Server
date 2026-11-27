@@ -22,20 +22,20 @@ FTP Server G2 可以把 Android 手机/嵌入式设备变成 FTP 文件服务器
 调用方需要在 `AndroidManifest.xml` 中声明权限：
 
 ```xml
-<uses-permission android:name="com.github.stjiege.ftpshare.permission.CONTROL_FTP" />
+<uses-permission android:name="com.stftp.g2.permission.CONTROL_FTP" />
 ```
 
 | 用途 | 广播 |
 | --- | --- |
-| 启动 FTP | `com.github.stjiege.ftpshare.action.START_FTP` |
-| 停止 FTP | `com.github.stjiege.ftpshare.action.STOP_FTP` |
+| 启动 FTP | `com.stftp.g2.action.START_FTP` |
+| 停止 FTP | `com.stftp.g2.action.STOP_FTP` |
 
-接收器组件为 `com.github.stjiege.ftpshare.receivers.FtpControlReceiver`。
+接收器组件为 `com.stftp.g2.receivers.FtpControlReceiver`。
 
 ### Android Java 调用示例
 
 ```java
-private static final String APP_ID = "com.github.stjiege.ftpshare";
+private static final String APP_ID = "com.stftp.g2";
 private static final String EXTRA_STATUS = APP_ID + ".extra.CONTROL_STATUS";
 private static final String EXTRA_MESSAGE = APP_ID + ".extra.CONTROL_MESSAGE";
 

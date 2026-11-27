@@ -1,4 +1,4 @@
-package com.github.stjiege.ftpshare.shizuku;
+package com.stftp.g2.shizuku;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -8,10 +8,10 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 
-import com.github.stjiege.ftpshare.Constants;
-import com.github.stjiege.ftpshare.services.FtpService;
-import com.github.stjiege.ftpshare.utils.CommonUtils;
-import com.github.stjiege.ftpshare.utils.LogManager;
+import com.stftp.g2.Constants;
+import com.stftp.g2.services.FtpService;
+import com.stftp.g2.utils.CommonUtils;
+import com.stftp.g2.utils.LogManager;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,7 +22,7 @@ import rikka.shizuku.Shizuku;
 public final class ShizukuWatchdogController {
     private static final String TAG = "ftpserverg2-watchdog";
     // Must track a UserService implementation change so Shizuku replaces a cached process.
-    private static final int USER_SERVICE_VERSION = 22;
+    private static final int USER_SERVICE_VERSION = 23;
     /** A bind with no callback at all must not latch the controller into "binding forever". */
     private static final long BIND_TIMEOUT_MS = 8_000L;
     private static final int MAX_BIND_ATTEMPTS = 3;
@@ -64,7 +64,7 @@ public final class ShizukuWatchdogController {
             if (bound || !binding) return;
             binding = false;
             status = "连接 Shizuku 看门狗超时";
-            LogManager.warning("连接 Shizuku 看门狗超时");
+            LogManager.warning("Shizuku watchdog connection timed out");
             if (watchRequested && bindAttempts < MAX_BIND_ATTEMPTS) {
                 bindAsync();
             } else if (watchRequested) {
@@ -76,7 +76,8 @@ public final class ShizukuWatchdogController {
     private static final Runnable START_RETRY_TASK = new Runnable() {
         @Override public void run() {
             if (!watchRequested) return;
-            if (appContext == null || !isEnabled(appContext) || !FtpService.isFTPServiceRunning()) {
+            if (appContext == null || !isEnabled(appContext) || !FtpService.isFTPServiceRunning()
+                    || FtpService.isAttackLockdown(appContext)) {
                 // FTP ended in the meantime: there is nothing left to guard.
                 watchRequested = false;
                 return;
@@ -96,7 +97,7 @@ public final class ShizukuWatchdogController {
             MAIN_HANDLER.removeCallbacks(BIND_TIMEOUT_TASK);
             final IShizukuCommandService connectedService = IShizukuCommandService.Stub.asInterface(binder);
             if (connectedService == null) {
-                invalidate("Shizuku 看门狗返回空服务");
+                invalidate("Shizuku watchdog returned no service");
                 return;
             }
             synchronized (ShizukuWatchdogController.class) {
@@ -106,32 +107,14 @@ public final class ShizukuWatchdogController {
                 bindAttempts = 0;
             }
             if (stopWhenConnected) {
-                // Delivered on the calling thread on purpose: the caller stops its own process
-                // right afterwards, and an async stop could be lost and resurrect FTP later.
-                try {
-                    connectedService.stopWatch();
-                    status = "看门狗已停止";
-                } catch (Throwable error) {
-                    status = "看门狗停止失败";
-                    LogManager.warning("停止 Shizuku 看门狗失败: " + error.getClass().getSimpleName());
-                }
-                unbindAndReset();
+                stopWatchAsync(connectedService);
                 return;
             }
-            CONTROL_EXECUTOR.execute(new Runnable() {
-                @Override public void run() {
-                    try {
-                        connectedService.startWatch();
-                        status = connectedService.getWatchStatus();
-                    } catch (Throwable error) {
-                        invalidate("Shizuku 看门狗调用失败: " + error.getClass().getSimpleName());
-                    }
-                }
-            });
+            startWatchAsync();
         }
 
         @Override public void onServiceDisconnected(ComponentName name) {
-            invalidate("Shizuku 看门狗连接已断开");
+            invalidate("Shizuku watchdog disconnected");
         }
     };
 
@@ -144,7 +127,8 @@ public final class ShizukuWatchdogController {
     /** Starts the guard only after a successful FTP start and only when Shizuku was authorized. */
     public static synchronized void startIfEnabled(Context context) {
         appContext = context.getApplicationContext();
-        if (!isEnabled(appContext)) {
+        if (!isEnabled(appContext) || FtpService.isAttackLockdown(appContext)
+                || !FtpService.isFTPServiceRunning()) {
             watchRequested = false;
             status = "看门狗未启用";
             return;
@@ -169,7 +153,7 @@ public final class ShizukuWatchdogController {
                 bindAsync();
             }
         } catch (Exception error) {
-            invalidate("Shizuku 看门狗不可用: " + error.getClass().getSimpleName());
+            invalidate("Shizuku watchdog unavailable: " + error.getClass().getSimpleName());
         }
     }
 
@@ -195,7 +179,7 @@ public final class ShizukuWatchdogController {
                 } catch (Exception error) {
                     binding = false;
                     MAIN_HANDLER.removeCallbacks(BIND_TIMEOUT_TASK);
-                    invalidate("Shizuku 看门狗绑定失败: " + error.getClass().getSimpleName());
+                    invalidate("Shizuku watchdog bind failed: " + error.getClass().getSimpleName());
                 }
             }
         });
@@ -209,12 +193,17 @@ public final class ShizukuWatchdogController {
         }
         CONTROL_EXECUTOR.execute(new Runnable() {
             @Override public void run() {
-                try {
-                    target.startWatch();
-                    status = target.getWatchStatus();
-                } catch (Throwable error) {
-                    invalidate("Shizuku 看门狗调用失败: " + error.getClass().getSimpleName());
-                }
+                    // Serialize with stop(): queued work must not rearm a stopped guard.
+                    if (!watchRequested || stopWhenConnected || target != service
+                            || appContext == null || FtpService.isAttackLockdown(appContext)
+                            || !FtpService.isFTPServiceRunning()) return;
+                    try {
+                        target.startWatch();
+                        status = target.getWatchStatus();
+                    } catch (Throwable error) {
+                        invalidate("Shizuku watchdog call failed: " + error.getClass().getSimpleName());
+                    }
+
             }
         });
     }
@@ -264,16 +253,7 @@ public final class ShizukuWatchdogController {
                 return;
             }
             if (service != null) {
-                // Synchronous: the caller stops its own process immediately afterwards, so an
-                // async stop could never be delivered and the daemon would revive FTP.
-                try {
-                    service.stopWatch();
-                    status = "看门狗已停止";
-                } catch (Throwable error) {
-                    status = "看门狗停止失败";
-                    LogManager.warning("停止 Shizuku 看门狗失败: " + error.getClass().getSimpleName());
-                }
-                unbindAndReset();
+                stopWatchAsync(service);
             } else if (!binding) {
                 status = "正在停止 Shizuku 看门狗";
                 // Bind by the stable tag even if this app process was recreated. This reaches an
@@ -284,15 +264,29 @@ public final class ShizukuWatchdogController {
         } catch (Exception error) {
             binding = false;
             status = "看门狗停止失败";
-            LogManager.warning("Shizuku 看门狗停止失败: " + error.getClass().getSimpleName());
+            LogManager.warning("Failed to stop Shizuku watchdog: " + error.getClass().getSimpleName());
         }
+    }
+
+    private static void stopWatchAsync(final IShizukuCommandService target) {
+        CONTROL_EXECUTOR.execute(() -> {
+            if (!stopWhenConnected || watchRequested || target != service) return;
+            try {
+                target.stopWatch();
+                status = "看门狗已停止";
+            } catch (Throwable error) {
+                status = "看门狗停止失败";
+                LogManager.warning("Failed to stop Shizuku watchdog: " + error.getClass().getSimpleName());
+            }
+            if (target == service && stopWhenConnected && !watchRequested) unbindAndReset();
+        });
     }
 
     private static void unbindAndReset() {
         try {
             if (bound) Shizuku.unbindUserService(args(), CONNECTION, true);
         } catch (Exception error) {
-            LogManager.warning("释放 Shizuku 用户服务失败: " + error.getClass().getSimpleName());
+            LogManager.warning("Failed to release Shizuku service: " + error.getClass().getSimpleName());
         }
         synchronized (ShizukuWatchdogController.class) {
             service = null;
